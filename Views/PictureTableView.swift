@@ -9,11 +9,7 @@ import SwiftUI
 
 struct PictureTableView: View {
     let picture: String
-<<<<<<< HEAD
     @Binding var value : Double
-=======
-    @Binding var value: Double
->>>>>>> main
     
     var body: some View {
         HStack(spacing: 5) {

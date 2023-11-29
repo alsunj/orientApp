@@ -9,17 +9,12 @@ import SwiftUI
 
 struct ControlsView: View {
     @ObservedObject var locationManager = LocationManager.shared
-<<<<<<< HEAD
     
     
-=======
-
->>>>>>> main
     var body: some View {
         HStack{
             HStack{
                 VStack(spacing: 15) {
-<<<<<<< HEAD
                     Table(variable: "Start  |",
                           value: $locationManager.distanceCovered)
                     HStack{
@@ -83,44 +78,4 @@ struct ControlsView: View {
         
         
     }
-=======
-                    Table(variable: "Start  |", value: $locationManager.distanceFromWp)
-                    Table(variable: "or |", value: $locationManager.directLineFromWp)
-                    Table(variable: "stop |", value: $locationManager.sessionDuration)
-                }
-            }
-            .padding(10)
-            Rectangle()
-                .frame(width: 1, height: .infinity)
-                .foregroundColor(.black)
-        }
-
-        HStack{
-            VStack(spacing: 15) {
-                Table(variable: "add |", value: $locationManager.averageSpeedFromCp)
-                Table(variable: "CP |", value: $locationManager.distanceFromCp)
-                Table(variable: "icon |", value: $locationManager.averageSpeedFromWp)
-            }
-
-            Rectangle()
-                .frame(width: 1, height: .infinity)
-                .foregroundColor(.black)
-        }
-
-        Spacer()
-
-        VStack(spacing: 15) {
-            Table(variable: "add |", value: $locationManager.averageSpeed)
-            Table(variable: "CP |", value: $locationManager.distanceFromCp)
-            Table(variable: "icon |", value: $locationManager.averageSpeedFromWp)
-        }
-    }
-    
-
-    
-}
-
-#Preview {
-    ControlsView()
->>>>>>> main
 }

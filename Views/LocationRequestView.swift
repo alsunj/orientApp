@@ -26,10 +26,6 @@ struct LocationRequestView: View {
                 HStack(spacing: 45) {
                     Button {
                         if LocationManager.shared.requestLocation() {
-<<<<<<< HEAD
-=======
-                            // Location request succeeded
->>>>>>> main
                         } else {
                             // Location request denied
                             if !locationDeniedOnce {
@@ -55,11 +51,7 @@ struct LocationRequestView: View {
         }
     }
     public func openAppSettings() {
-<<<<<<< HEAD
         guard URL(string: UIApplication.openSettingsURLString) != nil else { return }
-=======
-            guard let appSettingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
->>>>>>> main
             
             if let bundleIdentifier = Bundle.main.bundleIdentifier,
                let appSettingsURL = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleIdentifier)") {
