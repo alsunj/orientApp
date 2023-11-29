@@ -1,0 +1,683 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		430E21202B0CFCFA0044E0EF /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430E211F2B0CFCFA0044E0EF /* CompassView.swift */; };
+		43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339A2B068E9100D3B149 /* orientAppApp.swift */; };
+		43C9339D2B068E9100D3B149 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339C2B068E9100D3B149 /* ContentView.swift */; };
+		43C9339F2B068E9200D3B149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C9339E2B068E9200D3B149 /* Assets.xcassets */; };
+		43C933A22B068E9200D3B149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C933A12B068E9200D3B149 /* Preview Assets.xcassets */; };
+		43C933AC2B068E9200D3B149 /* orientAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C933AB2B068E9200D3B149 /* orientAppTests.swift */; };
+		43C933B62B068E9200D3B149 /* orientAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C933B52B068E9200D3B149 /* orientAppUITests.swift */; };
+		43C933B82B068E9200D3B149 /* orientAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C933B72B068E9200D3B149 /* orientAppUITestsLaunchTests.swift */; };
+		43C933C52B06B33100D3B149 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C933C42B06B33100D3B149 /* MapView.swift */; };
+		43C933C92B06BBCF00D3B149 /* LocationRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C933C82B06BBCF00D3B149 /* LocationRequestView.swift */; };
+		43E763992B16BDE5001DFAE3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763942B16BDE5001DFAE3 /* TableView.swift */; };
+		43E7639A2B16BDE5001DFAE3 /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763952B16BDE5001DFAE3 /* ControlsView.swift */; };
+		43E7639B2B16BDE5001DFAE3 /* PictureTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763962B16BDE5001DFAE3 /* PictureTableView.swift */; };
+		43E7639C2B16BDE5001DFAE3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763972B16BDE5001DFAE3 /* TestView.swift */; };
+		43E7639D2B16BDE5001DFAE3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763982B16BDE5001DFAE3 /* SettingsView.swift */; };
+		43E763A42B16BDEF001DFAE3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E7639E2B16BDEF001DFAE3 /* Location.swift */; };
+		43E763A52B16BDEF001DFAE3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E7639F2B16BDEF001DFAE3 /* LocationManager.swift */; };
+		43E763A62B16BDEF001DFAE3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763A02B16BDEF001DFAE3 /* Session.swift */; };
+		43E763A72B16BDEF001DFAE3 /* CompassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763A12B16BDEF001DFAE3 /* CompassManager.swift */; };
+		43E763A82B16BDEF001DFAE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763A22B16BDEF001DFAE3 /* User.swift */; };
+		43E763A92B16BDEF001DFAE3 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E763A32B16BDEF001DFAE3 /* UserLocation.swift */; };
+		FA510B1D2B07C8E5005A3FC8 /* MapOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA510B142B07C8E5005A3FC8 /* MapOptionsView.swift */; };
+		FA510B1F2B07C8E5005A3FC8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA510B162B07C8E5005A3FC8 /* LoginView.swift */; };
+		FA510B232B07C8E5005A3FC8 /* LoginOrRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA510B1A2B07C8E5005A3FC8 /* LoginOrRegisterView.swift */; };
+		FA510B242B07C8E5005A3FC8 /* MapStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA510B1B2B07C8E5005A3FC8 /* MapStatisticsView.swift */; };
+		FA510B252B07C8E5005A3FC8 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA510B1C2B07C8E5005A3FC8 /* RegisterView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		43C933A82B068E9200D3B149 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43C9338F2B068E9100D3B149 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43C933962B068E9100D3B149;
+			remoteInfo = orientApp;
+		};
+		43C933B22B068E9200D3B149 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43C9338F2B068E9100D3B149 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43C933962B068E9100D3B149;
+			remoteInfo = orientApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		430E211F2B0CFCFA0044E0EF /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
+		43C933972B068E9100D3B149 /* orientApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orientApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C9339A2B068E9100D3B149 /* orientAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orientAppApp.swift; sourceTree = "<group>"; };
+		43C9339C2B068E9100D3B149 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		43C9339E2B068E9200D3B149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43C933A12B068E9200D3B149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		43C933A72B068E9200D3B149 /* orientAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = orientAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C933AB2B068E9200D3B149 /* orientAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orientAppTests.swift; sourceTree = "<group>"; };
+		43C933B12B068E9200D3B149 /* orientAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = orientAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C933B52B068E9200D3B149 /* orientAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orientAppUITests.swift; sourceTree = "<group>"; };
+		43C933B72B068E9200D3B149 /* orientAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orientAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		43C933C42B06B33100D3B149 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		43C933C82B06BBCF00D3B149 /* LocationRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestView.swift; sourceTree = "<group>"; };
+		43E763942B16BDE5001DFAE3 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		43E763952B16BDE5001DFAE3 /* ControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
+		43E763962B16BDE5001DFAE3 /* PictureTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureTableView.swift; sourceTree = "<group>"; };
+		43E763972B16BDE5001DFAE3 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		43E763982B16BDE5001DFAE3 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		43E7639E2B16BDEF001DFAE3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Data/Location.swift; sourceTree = "<group>"; };
+		43E7639F2B16BDEF001DFAE3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = Data/LocationManager.swift; sourceTree = "<group>"; };
+		43E763A02B16BDEF001DFAE3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Data/Session.swift; sourceTree = "<group>"; };
+		43E763A12B16BDEF001DFAE3 /* CompassManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompassManager.swift; path = Data/CompassManager.swift; sourceTree = "<group>"; };
+		43E763A22B16BDEF001DFAE3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Data/User.swift; sourceTree = "<group>"; };
+		43E763A32B16BDEF001DFAE3 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLocation.swift; path = Data/UserLocation.swift; sourceTree = "<group>"; };
+		FA510B142B07C8E5005A3FC8 /* MapOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapOptionsView.swift; sourceTree = "<group>"; };
+		FA510B162B07C8E5005A3FC8 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FA510B1A2B07C8E5005A3FC8 /* LoginOrRegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOrRegisterView.swift; sourceTree = "<group>"; };
+		FA510B1B2B07C8E5005A3FC8 /* MapStatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapStatisticsView.swift; sourceTree = "<group>"; };
+		FA510B1C2B07C8E5005A3FC8 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		43C933942B068E9100D3B149 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C933A42B068E9200D3B149 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C933AE2B068E9200D3B149 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		430E211D2B0CFBDA0044E0EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA510B162B07C8E5005A3FC8 /* LoginView.swift */,
+				43E763952B16BDE5001DFAE3 /* ControlsView.swift */,
+				43E763962B16BDE5001DFAE3 /* PictureTableView.swift */,
+				43E763982B16BDE5001DFAE3 /* SettingsView.swift */,
+				43E763942B16BDE5001DFAE3 /* TableView.swift */,
+				43E763972B16BDE5001DFAE3 /* TestView.swift */,
+				43C933C42B06B33100D3B149 /* MapView.swift */,
+				FA510B1A2B07C8E5005A3FC8 /* LoginOrRegisterView.swift */,
+				FA510B142B07C8E5005A3FC8 /* MapOptionsView.swift */,
+				FA510B1B2B07C8E5005A3FC8 /* MapStatisticsView.swift */,
+				FA510B1C2B07C8E5005A3FC8 /* RegisterView.swift */,
+				43C933C82B06BBCF00D3B149 /* LocationRequestView.swift */,
+				430E211F2B0CFCFA0044E0EF /* CompassView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		430E211E2B0CFBF10044E0EF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				43E763A12B16BDEF001DFAE3 /* CompassManager.swift */,
+				43E7639E2B16BDEF001DFAE3 /* Location.swift */,
+				43E7639F2B16BDEF001DFAE3 /* LocationManager.swift */,
+				43E763A02B16BDEF001DFAE3 /* Session.swift */,
+				43E763A22B16BDEF001DFAE3 /* User.swift */,
+				43E763A32B16BDEF001DFAE3 /* UserLocation.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		43C9338E2B068E9100D3B149 = {
+			isa = PBXGroup;
+			children = (
+				43C933AA2B068E9200D3B149 /* orientAppTests */,
+				43C933B42B068E9200D3B149 /* orientAppUITests */,
+				43C933992B068E9100D3B149 /* orientApp */,
+				430E211E2B0CFBF10044E0EF /* Data */,
+				430E211D2B0CFBDA0044E0EF /* Views */,
+				43C933982B068E9100D3B149 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		43C933982B068E9100D3B149 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43C933972B068E9100D3B149 /* orientApp.app */,
+				43C933A72B068E9200D3B149 /* orientAppTests.xctest */,
+				43C933B12B068E9200D3B149 /* orientAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43C933992B068E9100D3B149 /* orientApp */ = {
+			isa = PBXGroup;
+			children = (
+				43C9339A2B068E9100D3B149 /* orientAppApp.swift */,
+				43C9339C2B068E9100D3B149 /* ContentView.swift */,
+				43C9339E2B068E9200D3B149 /* Assets.xcassets */,
+				43C933A02B068E9200D3B149 /* Preview Content */,
+			);
+			path = orientApp;
+			sourceTree = "<group>";
+		};
+		43C933A02B068E9200D3B149 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				43C933A12B068E9200D3B149 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		43C933AA2B068E9200D3B149 /* orientAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				43C933AB2B068E9200D3B149 /* orientAppTests.swift */,
+			);
+			path = orientAppTests;
+			sourceTree = "<group>";
+		};
+		43C933B42B068E9200D3B149 /* orientAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				43C933B52B068E9200D3B149 /* orientAppUITests.swift */,
+				43C933B72B068E9200D3B149 /* orientAppUITestsLaunchTests.swift */,
+			);
+			path = orientAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		43C933962B068E9100D3B149 /* orientApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43C933BB2B068E9300D3B149 /* Build configuration list for PBXNativeTarget "orientApp" */;
+			buildPhases = (
+				43C933932B068E9100D3B149 /* Sources */,
+				43C933942B068E9100D3B149 /* Frameworks */,
+				43C933952B068E9100D3B149 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = orientApp;
+			productName = orientApp;
+			productReference = 43C933972B068E9100D3B149 /* orientApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		43C933A62B068E9200D3B149 /* orientAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43C933BE2B068E9300D3B149 /* Build configuration list for PBXNativeTarget "orientAppTests" */;
+			buildPhases = (
+				43C933A32B068E9200D3B149 /* Sources */,
+				43C933A42B068E9200D3B149 /* Frameworks */,
+				43C933A52B068E9200D3B149 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43C933A92B068E9200D3B149 /* PBXTargetDependency */,
+			);
+			name = orientAppTests;
+			productName = orientAppTests;
+			productReference = 43C933A72B068E9200D3B149 /* orientAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		43C933B02B068E9200D3B149 /* orientAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43C933C12B068E9300D3B149 /* Build configuration list for PBXNativeTarget "orientAppUITests" */;
+			buildPhases = (
+				43C933AD2B068E9200D3B149 /* Sources */,
+				43C933AE2B068E9200D3B149 /* Frameworks */,
+				43C933AF2B068E9200D3B149 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43C933B32B068E9200D3B149 /* PBXTargetDependency */,
+			);
+			name = orientAppUITests;
+			productName = orientAppUITests;
+			productReference = 43C933B12B068E9200D3B149 /* orientAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		43C9338F2B068E9100D3B149 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					43C933962B068E9100D3B149 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					43C933A62B068E9200D3B149 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 43C933962B068E9100D3B149;
+					};
+					43C933B02B068E9200D3B149 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 43C933962B068E9100D3B149;
+					};
+				};
+			};
+			buildConfigurationList = 43C933922B068E9100D3B149 /* Build configuration list for PBXProject "orientApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 43C9338E2B068E9100D3B149;
+			productRefGroup = 43C933982B068E9100D3B149 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				43C933962B068E9100D3B149 /* orientApp */,
+				43C933A62B068E9200D3B149 /* orientAppTests */,
+				43C933B02B068E9200D3B149 /* orientAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43C933952B068E9100D3B149 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C933A22B068E9200D3B149 /* Preview Assets.xcassets in Resources */,
+				43C9339F2B068E9200D3B149 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C933A52B068E9200D3B149 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C933AF2B068E9200D3B149 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43C933932B068E9100D3B149 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA510B232B07C8E5005A3FC8 /* LoginOrRegisterView.swift in Sources */,
+				43E763A42B16BDEF001DFAE3 /* Location.swift in Sources */,
+				43C9339D2B068E9100D3B149 /* ContentView.swift in Sources */,
+				43E7639A2B16BDE5001DFAE3 /* ControlsView.swift in Sources */,
+				43E7639D2B16BDE5001DFAE3 /* SettingsView.swift in Sources */,
+				FA510B1F2B07C8E5005A3FC8 /* LoginView.swift in Sources */,
+				43C933C52B06B33100D3B149 /* MapView.swift in Sources */,
+				FA510B252B07C8E5005A3FC8 /* RegisterView.swift in Sources */,
+				43C933C92B06BBCF00D3B149 /* LocationRequestView.swift in Sources */,
+				FA510B242B07C8E5005A3FC8 /* MapStatisticsView.swift in Sources */,
+				43E7639B2B16BDE5001DFAE3 /* PictureTableView.swift in Sources */,
+				43E763A92B16BDEF001DFAE3 /* UserLocation.swift in Sources */,
+				430E21202B0CFCFA0044E0EF /* CompassView.swift in Sources */,
+				43E7639C2B16BDE5001DFAE3 /* TestView.swift in Sources */,
+				43E763A52B16BDEF001DFAE3 /* LocationManager.swift in Sources */,
+				43E763A62B16BDEF001DFAE3 /* Session.swift in Sources */,
+				43E763992B16BDE5001DFAE3 /* TableView.swift in Sources */,
+				43E763A82B16BDEF001DFAE3 /* User.swift in Sources */,
+				43E763A72B16BDEF001DFAE3 /* CompassManager.swift in Sources */,
+				43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */,
+				FA510B1D2B07C8E5005A3FC8 /* MapOptionsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C933A32B068E9200D3B149 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C933AC2B068E9200D3B149 /* orientAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C933AD2B068E9200D3B149 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C933B62B068E9200D3B149 /* orientAppUITests.swift in Sources */,
+				43C933B82B068E9200D3B149 /* orientAppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43C933A92B068E9200D3B149 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43C933962B068E9100D3B149 /* orientApp */;
+			targetProxy = 43C933A82B068E9200D3B149 /* PBXContainerItemProxy */;
+		};
+		43C933B32B068E9200D3B149 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43C933962B068E9100D3B149 /* orientApp */;
+			targetProxy = 43C933B22B068E9200D3B149 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		43C933B92B068E9300D3B149 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		43C933BA2B068E9300D3B149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		43C933BC2B068E9300D3B149 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"orientApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 9F6S65ZJ37;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "pls location";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43C933BD2B068E9300D3B149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"orientApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 9F6S65ZJ37;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "pls location";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		43C933BF2B068E9300D3B149 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/orientApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/orientApp";
+			};
+			name = Debug;
+		};
+		43C933C02B068E9300D3B149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/orientApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/orientApp";
+			};
+			name = Release;
+		};
+		43C933C22B068E9300D3B149 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = orientApp;
+			};
+			name = Debug;
+		};
+		43C933C32B068E9300D3B149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = orientApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		43C933922B068E9100D3B149 /* Build configuration list for PBXProject "orientApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43C933B92B068E9300D3B149 /* Debug */,
+				43C933BA2B068E9300D3B149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43C933BB2B068E9300D3B149 /* Build configuration list for PBXNativeTarget "orientApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43C933BC2B068E9300D3B149 /* Debug */,
+				43C933BD2B068E9300D3B149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43C933BE2B068E9300D3B149 /* Build configuration list for PBXNativeTarget "orientAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43C933BF2B068E9300D3B149 /* Debug */,
+				43C933C02B068E9300D3B149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43C933C12B068E9300D3B149 /* Build configuration list for PBXNativeTarget "orientAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43C933C22B068E9300D3B149 /* Debug */,
+				43C933C32B068E9300D3B149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 43C9338F2B068E9100D3B149 /* Project object */;
+}
