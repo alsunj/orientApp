@@ -7,6 +7,7 @@
 
 import Foundation
 
+<<<<<<< HEAD
 struct Session: Decodable {
     var sessionId: UUID?
     var name: String
@@ -39,4 +40,17 @@ struct LocationUpdate {
     var verticalAccuracy: Double
     var gpsSessionId: UUID
     var gpsLocationTypeId: UUID
+=======
+struct Session {
+    var sessionId : UUID
+    var userId: UUID
+    var sessionName: String
+    var createdAt: Date
+    var distanceCovered: Double
+    var timeElapsed: Double
+    var averageSpeed: Double
+    var checkPoints: [UserLocation]
+    var wayPoints: [UserLocation]
+    var locations: [UserLocation]
+>>>>>>> 2f8e06e (tantsin valssi)
 }

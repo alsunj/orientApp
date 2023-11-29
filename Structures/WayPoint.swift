@@ -6,6 +6,7 @@
 //
 
 import Foundation
+<<<<<<< HEAD
 import CoreLocation
 
 
@@ -15,3 +16,5 @@ struct WayPoint {
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
 }
+=======
+>>>>>>> 2f8e06e (tantsin valssi)
