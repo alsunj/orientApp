@@ -30,6 +30,12 @@ struct Table: View {
     }
 }
 
+<<<<<<< HEAD
 
+=======
+#Preview {
+    MapView()
+}
+>>>>>>> main
 
 

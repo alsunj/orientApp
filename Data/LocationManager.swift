@@ -24,7 +24,12 @@ class LocationManager: NSObject, ObservableObject {
     @Published var distanceFromWp: Double = 0.0
     @Published var directLineFromCp: Double = 0.0
     @Published var directLineFromWp: Double = 0.0
+<<<<<<< HEAD
     @Published var sessionDuration: String = "00:00:00"
+=======
+    
+    @Published var sessionDuration: Double = 0.0
+>>>>>>> main
     @Published var averageSpeed: Double = 0.0
     @Published var averageSpeedFromCp: Double = 0.0
     @Published var averageSpeedFromWp: Double = 0.0
@@ -42,8 +47,13 @@ class LocationManager: NSObject, ObservableObject {
     }
     
     func requestLocation() -> Bool {
+<<<<<<< HEAD
         AuthorizationManager.requestAuthorization(for: manager)
         return authorizationStatus == .authorizedWhenInUse
+=======
+            manager.requestWhenInUseAuthorization()
+            return authorizationStatus == .authorizedWhenInUse
+>>>>>>> main
 
 
         }
@@ -71,6 +81,7 @@ class LocationManager: NSObject, ObservableObject {
     var distanceFromWpString: String {
             return String(format: "%.2f", distanceFromWp)
         }
+<<<<<<< HEAD
  
     func reset() {
             
@@ -79,6 +90,8 @@ class LocationManager: NSObject, ObservableObject {
     {
         
     }
+=======
+>>>>>>> main
 
 
  }

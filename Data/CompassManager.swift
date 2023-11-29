@@ -13,11 +13,16 @@ import CoreLocation
 class CompassManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     static let shared = CompassManager()
+<<<<<<< HEAD
 
     @Published var heading: Double = 0.0
     @Published var isCompassAvailable: Bool = false
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
+=======
+    @Published var heading: Double = 0.0
+    @Published var isCompassAvailable: Bool = false
+>>>>>>> main
 
     override init() {
         super.init()
@@ -35,6 +40,7 @@ class CompassManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func checkCompassPermission() {
+<<<<<<< HEAD
         func checkCompassPermission() {
                AuthorizationManager.requestAuthorization(for: locationManager)
               
@@ -46,6 +52,22 @@ class CompassManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     
 
+=======
+        let status = locationManager.authorizationStatus
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            break // Compass permission already granted
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            print("Compass permission denied. Please enable it in Settings.")
+        @unknown default:
+            break
+        }
+    }
+
+    // MARK: - CLLocationManagerDelegate
+>>>>>>> main
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         let magneticHeading = newHeading.magneticHeading
@@ -54,10 +76,15 @@ class CompassManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     private func calculateTrueHeading(magneticHeading: Double) -> Double {
+<<<<<<< HEAD
+=======
+        // Adjust the magnetic declination based on your location
+>>>>>>> main
         let magneticDeclination = locationManager.location?.horizontalAccuracy ?? 0.0
         let trueHeading = magneticHeading + magneticDeclination
         return trueHeading
     }
+<<<<<<< HEAD
     func reset() {
             
         }
@@ -65,4 +92,6 @@ class CompassManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     {
         
     }
+=======
+>>>>>>> main
 }
