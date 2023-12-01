@@ -14,7 +14,7 @@ struct ControlsView: View {
     var body: some View {
         HStack{
             HStack{
-                VStack(spacing: 15) {
+                VStack() {
                     Table(variable: "Start  |",
                           value: $locationManager.distanceCovered)
                     HStack{
@@ -33,8 +33,7 @@ struct ControlsView: View {
                         }
                     }
                     .padding(.bottom)
-                    .font(.system(size: 10))
-                    .background(Color.gray.opacity(0.1))
+                    .font(.system(size: 9))
                     .cornerRadius(7)
                     .frame(maxWidth: UIScreen.main.bounds.size.width / 3.5)
                     PictureTableView(picture: "figure.walk",
@@ -42,14 +41,14 @@ struct ControlsView: View {
                 }
                 .padding(10)
                 Rectangle()
-                    .frame(width: 2)
+                    .frame(width: 2, height: 90)
                     .foregroundColor(.black)
             }
             
             
             HStack{
-                VStack(spacing: 15) {
-                    Table(variable: "Range  | ",
+                VStack() {
+                    Table(variable: "CP | ",
                           value: $locationManager.distanceFromCp)
                     
                     
@@ -62,11 +61,12 @@ struct ControlsView: View {
                 Rectangle()
                     .frame(width: 2)
                     .foregroundColor(.black)
+                    .frame(width: 2, height: 90)
             }
             
             
-            VStack(spacing: 15) {
-                Table(variable: "Range | ",
+            VStack() {
+                Table(variable: "WP | ",
                       value: $locationManager.distanceFromWp)
                 PictureTableView(picture: "swift",
                                  value: $locationManager.directLineFromWp)
@@ -78,4 +78,8 @@ struct ControlsView: View {
         
         
     }
+}
+
+#Preview {
+    ControlsView()
 }
