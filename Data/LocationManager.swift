@@ -10,10 +10,11 @@ class LocationManager: NSObject, ObservableObject {
     
 
     @Published var userLocation: CLLocationCoordinate2D?
-    @Published var userLocations: [CLLocationCoordinate2D] = []
-    @Published var checkpoints: [CheckPoint] = []
-    @Published var waypoint: WayPoint?
+    @Published var userLocations: [CLLocationCoordinate2D]?
+    @Published var checkpoints: [String: CLLocationCoordinate2D] = [:]
+    @Published var waypoint: CLLocationCoordinate2D?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    @Published var waypointPresented: Bool = false
 
     static let shared = LocationManager()
     static var idCounter = 0
@@ -52,26 +53,29 @@ class LocationManager: NSObject, ObservableObject {
             manager.requestWhenInUseAuthorization()
         }
     func checkAndUpdateUserLocation(_ newLocation: CLLocationCoordinate2D) {
-        guard let lastLocation = userLocations.last else {
+        guard let lastLocation = userLocations?.last else {
             // If there is no previous location, add the new location
-            userLocations.append(newLocation)
+            userLocations = [newLocation]
             return
         }
+
         let newCLLocation = CLLocation(latitude: newLocation.latitude, longitude: newLocation.longitude)
         let lastCLLocation = CLLocation(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
 
         let distance = newCLLocation.distance(from: lastCLLocation)
 
         if distance >= 10.0 {
-            userLocations.append(newLocation)
+            userLocations?.append(newLocation)
         }
     }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.first else { return }
-            let newLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            checkAndUpdateUserLocation(newLocation)
-            self.userLocation = newLocation
-        }
+        guard let location = locations.first else { return }
+        let newLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        checkAndUpdateUserLocation(newLocation)
+        self.userLocation = newLocation
+    }
+
 
     
     private func setup() {

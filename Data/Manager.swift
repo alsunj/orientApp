@@ -7,30 +7,79 @@
 
 import Foundation
 
-class Manager {
+class Manager : NSObject, ObservableObject {
+
     static let shared = Manager()
+    @Published var usertoken: String?
+    @Published var sessionStarted: Bool = false
+    @Published var sessionLoading = false
+    @Published var loginLoading = false
+    @Published var registerLoading = false
+    @Published var currentUser: User?
+
     
+    func register(firstName: String, lastName: String, email: String, password: String) async {Task {
+        registerLoading = true
+        let registerStarted = await NetworkManager.shared.register(firstName: firstName, lastName: lastName, email: email, password: password)
+        if registerStarted {
+            print("Session started successfully")
+        } else {
+            print("Failed to start the session")
+
+        }
+        registerLoading = false
+
+    }}
     
-    func registerUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        NetworkManager.shared.registerUser(user: user, completion: completion)
+    func login(email: String, password: String) {
+        loginLoading = true
+
+        Task {
+            
+            do {
+                let user = await NetworkManager.shared.login(email: email, password: password)
+                DispatchQueue.main.async {
+                    self.currentUser = user
+                }
+            } catch {
+                print("Login error: \(error)")
+
+            }
+            loginLoading = false
+        }
     }
+
+
+        
+    func createSession(name: String, description: String, mode: NetworkManager.GpsSessionType) async {Task {
+        sessionLoading = true
+        let sessionStarted = await NetworkManager.shared.createSession(name: "SessionName", description: "SessionDescription", mode: .walking)
+        if sessionStarted {
+            print("Session started successfully")
+            sessionLoading = false
+        } else {
+            print("Failed to start the session")
+            sessionLoading = false
+
+        }
     
-    func loginUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        NetworkManager.shared.loginUser(user: user, completion: completion)
     }
-    
-    func startNewSession(session: Session, completion: @escaping (Result<Session, Error>) -> Void) {
-        NetworkManager.shared.startNewSession(session: session, completion: completion)
+        
+        
+        
     }
-    
-    func getLocationTypes(completion: @escaping (Result<[Location], Error>) -> Void) {
-        NetworkManager.shared.getLocationTypes(completion: completion)
+        func saveUserToUserDefaults(user: User, forKey key: String) {
+            currentUser = user
+            if let encodedUser = try? JSONEncoder().encode(user) {
+                UserDefaults.standard.set(encodedUser, forKey: key)
+            }
+        }
+
+    func logout(){
+        currentUser = nil
+        
     }
-    
-    func postLocationUpdate(location: Location, completion: @escaping (Result<Void, Error>) -> Void) {
-        NetworkManager.shared.postLocationUpdate(location: location, completion: completion)
-    }
-    
+
     func resetAllManagers() {
         LocationManager.shared.reset()
         CompassManager.shared.reset()
@@ -44,3 +93,4 @@ class Manager {
         NotificationManager.shared.pause()
     }
 }
+

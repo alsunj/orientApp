@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @EnvironmentObject var smanager: Manager
+
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var email = ""
@@ -77,37 +79,37 @@ struct RegisterView: View {
                            
                     }
 
-                    Button("Create") {
-                        AuthorizationManager.shared.validateAndCreateUser(
+                    Button(action: {
+                        Task {
+                            await
+                            AuthorizationManager.shared.validateAndCreateUser(
                                 firstName: firstName,
                                 lastName: lastName,
                                 email: email,
                                 password: password,
                                 password2: password2
-                            ) { success in
-                                if success {
-                                    // User creation successful
-                                    registerSuccessful = true
-                                } else {
-                                    // Handle the case where user creation failed
-                                    // You can show an error message to the user
-                                }
-                            }
+                            )
+                            registerSuccessful = Manager.shared.registerLoading
+
                         }
                     }
+                        ,label: {
+                            if smanager.registerLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Text("Create")
+                            }
+                        })
+                    
+                    }
+                    .disabled(smanager.registerLoading)
                     .frame(maxWidth: 265)
                     .padding()
                     .background(.blue)
                     .foregroundColor(.white.opacity(0.9))
                     .font(.headline)
                     .cornerRadius(12.0)
-
-                    NavigationLink {
-                        ContentView()
-                    } label: {
-                        EmptyView()
-                    }
-                    .hidden()
                     .navigationDestination(
                         isPresented: $registerSuccessful) {
                         LoginView()
