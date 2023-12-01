@@ -14,6 +14,7 @@ class LocationManager: NSObject, ObservableObject {
     @Published var checkpoints: [CheckPoint] = []
     @Published var waypoint: WayPoint?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    @Published var waypointPresented: Bool = false
 
     static let shared = LocationManager()
     static var idCounter = 0

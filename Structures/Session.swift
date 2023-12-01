@@ -24,19 +24,19 @@ struct Session: Decodable {
         case maxSpeed
     }
 }
-struct LocationType {
-    var id: UUID
-    var name: String
-    var description: String
+struct LocationType: Decodable {
+    let name: String
+    let description: String
+    let id: String
 }
 
-struct LocationUpdate {
-    var recordedAt: Date
-    var latitude: Double
-    var longitude: Double
-    var accuracy: Double
-    var altitude: Double
-    var verticalAccuracy: Double
-    var gpsSessionId: UUID
-    var gpsLocationTypeId: UUID
+struct Location: Codable {
+    let recordedAt: String
+    let latitude: Double
+    let longitude: Double
+    let accuracy: Double
+    let altitude: Double
+    let verticalAccuracy: Double
+    let gpsSessionId: String
+    let gpsLocationTypeId: String
 }
