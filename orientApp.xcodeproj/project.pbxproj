@@ -15,6 +15,8 @@
 		4341DECB2B1A06DF00538495 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC42B1A06DF00538495 /* LocationManager.swift */; };
 		4341DECC2B1A06DF00538495 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC52B1A06DF00538495 /* Manager.swift */; };
 		4341DECD2B1A06DF00538495 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC62B1A06DF00538495 /* AuthorizationManager.swift */; };
+		4341DECF2B1A49FA00538495 /* SessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DECE2B1A49FA00538495 /* SessionsView.swift */; };
+		4341DED12B1A544B00538495 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DED02B1A544B00538495 /* ButtonsView.swift */; };
 		43C1FA672B18DC3700B1F9D9 /* CheckPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */; };
 		43C1FA692B18DC3F00B1F9D9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */; };
 		43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339A2B068E9100D3B149 /* orientAppApp.swift */; };
@@ -68,6 +70,8 @@
 		4341DEC42B1A06DF00538495 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4341DEC52B1A06DF00538495 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		4341DEC62B1A06DF00538495 /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
+		4341DECE2B1A49FA00538495 /* SessionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsView.swift; sourceTree = "<group>"; };
+		4341DED02B1A544B00538495 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPoint.swift; sourceTree = "<group>"; };
 		43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		43C933972B068E9100D3B149 /* orientApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orientApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,19 +130,21 @@
 		430E211D2B0CFBDA0044E0EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA510B162B07C8E5005A3FC8 /* LoginView.swift */,
 				43E763952B16BDE5001DFAE3 /* ControlsView.swift */,
 				43E763962B16BDE5001DFAE3 /* PictureTableView.swift */,
-				43E763982B16BDE5001DFAE3 /* SettingsView.swift */,
 				43E763942B16BDE5001DFAE3 /* TableView.swift */,
 				43E763972B16BDE5001DFAE3 /* TestView.swift */,
 				43C933C42B06B33100D3B149 /* MapView.swift */,
 				FA510B1A2B07C8E5005A3FC8 /* LoginOrRegisterView.swift */,
 				FA510B142B07C8E5005A3FC8 /* MapOptionsView.swift */,
 				FA510B1B2B07C8E5005A3FC8 /* MapStatisticsView.swift */,
+				FA510B162B07C8E5005A3FC8 /* LoginView.swift */,
 				FA510B1C2B07C8E5005A3FC8 /* RegisterView.swift */,
 				43C933C82B06BBCF00D3B149 /* LocationRequestView.swift */,
 				430E211F2B0CFCFA0044E0EF /* CompassView.swift */,
+				43E763982B16BDE5001DFAE3 /* SettingsView.swift */,
+				4341DECE2B1A49FA00538495 /* SessionsView.swift */,
+				4341DED02B1A544B00538495 /* ButtonsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				43E7639A2B16BDE5001DFAE3 /* ControlsView.swift in Sources */,
 				4341DEC72B1A06DF00538495 /* NotificationManager.swift in Sources */,
 				43E7639D2B16BDE5001DFAE3 /* SettingsView.swift in Sources */,
+				4341DED12B1A544B00538495 /* ButtonsView.swift in Sources */,
 				4341DEC92B1A06DF00538495 /* LocalDatabase.swift in Sources */,
 				43C1FA672B18DC3700B1F9D9 /* CheckPoint.swift in Sources */,
 				FA510B1F2B07C8E5005A3FC8 /* LoginView.swift in Sources */,
@@ -380,6 +387,7 @@
 				43E7639B2B16BDE5001DFAE3 /* PictureTableView.swift in Sources */,
 				43E763A92B16BDEF001DFAE3 /* UserLocation.swift in Sources */,
 				4341DECC2B1A06DF00538495 /* Manager.swift in Sources */,
+				4341DECF2B1A49FA00538495 /* SessionsView.swift in Sources */,
 				430E21202B0CFCFA0044E0EF /* CompassView.swift in Sources */,
 				43E7639C2B16BDE5001DFAE3 /* TestView.swift in Sources */,
 				43E763A62B16BDEF001DFAE3 /* Session.swift in Sources */,

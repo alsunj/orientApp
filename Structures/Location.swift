@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct Location: Identifiable, Codable, Equatable {
+struct Locations: Identifiable, Codable, Equatable {
     let id: UUID
     var name: String
     var description: String

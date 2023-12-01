@@ -13,7 +13,6 @@ struct LoginView: View {
     
     @State private var usernameError: Float = 0
     @State private var passwordError: Float = 0
-    
     @State private var loginSuccessful = false;
 
     var body: some View {
@@ -34,7 +33,7 @@ struct LoginView: View {
                             .padding()
                             .frame(width: 300, height: 50)
                             .background(.white)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .cornerRadius(10)
                             .border(.red, width: CGFloat(usernameError))
                         
@@ -42,14 +41,24 @@ struct LoginView: View {
                             .padding()
                             .frame(width: 300, height: 50)
                             .background(.white)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .cornerRadius(10)
                             .border(.red, width: CGFloat(passwordError))
                     }
                     
                     Button("Login") {
-                        loginSuccessful = true
+                        AuthorizationManager.shared.validateAndLogin(
+                               email: username, // Use username instead of email
+                               password: password,
+                               completion: { success in
+                                   if success {
+                                       loginSuccessful = true
+                                   } else {
+                                       // Handle login failure if needed
+                                   }
+                               })
                     }
+                               
                         .frame(maxWidth: 265)
                         .padding()
                         .background(.blue)
