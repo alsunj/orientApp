@@ -18,6 +18,4 @@ struct Location: Identifiable, Codable, Equatable {
     
 }
 
-// Custom initializer for CLLocationCoordinate2D
-
 

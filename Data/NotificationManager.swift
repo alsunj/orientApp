@@ -11,6 +11,9 @@ import Foundation
 class NotificationManager {
     static let shared = NotificationManager()
 
+    static func requestLocationAuthorization() {
+            LocationManager.shared.requestLocation()
+        }
     func checkNotificationPermission() {
         AuthorizationManager.requestNotificationAuthorization()
     }

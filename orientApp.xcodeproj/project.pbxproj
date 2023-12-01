@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		430E21202B0CFCFA0044E0EF /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430E211F2B0CFCFA0044E0EF /* CompassView.swift */; };
+		43BB2B802B195BDD00EF3111 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BB2B7F2B195BDD00EF3111 /* LocalDatabase.swift */; };
+		43C1FA642B18DB7F00B1F9D9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA632B18DB7F00B1F9D9 /* NetworkManager.swift */; };
+		43C1FA672B18DC3700B1F9D9 /* CheckPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */; };
+		43C1FA692B18DC3F00B1F9D9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */; };
 		43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339A2B068E9100D3B149 /* orientAppApp.swift */; };
 		43C9339D2B068E9100D3B149 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339C2B068E9100D3B149 /* ContentView.swift */; };
 		43C9339F2B068E9200D3B149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C9339E2B068E9200D3B149 /* Assets.xcassets */; };
@@ -57,6 +61,10 @@
 
 /* Begin PBXFileReference section */
 		430E211F2B0CFCFA0044E0EF /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
+		43BB2B7F2B195BDD00EF3111 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
+		43C1FA632B18DB7F00B1F9D9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPoint.swift; sourceTree = "<group>"; };
+		43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		43C933972B068E9100D3B149 /* orientApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orientApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C9339A2B068E9100D3B149 /* orientAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orientAppApp.swift; sourceTree = "<group>"; };
 		43C9339C2B068E9100D3B149 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,12 +82,12 @@
 		43E763962B16BDE5001DFAE3 /* PictureTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureTableView.swift; sourceTree = "<group>"; };
 		43E763972B16BDE5001DFAE3 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		43E763982B16BDE5001DFAE3 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		43E7639E2B16BDEF001DFAE3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Data/Location.swift; sourceTree = "<group>"; };
+		43E7639E2B16BDEF001DFAE3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		43E7639F2B16BDEF001DFAE3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = Data/LocationManager.swift; sourceTree = "<group>"; };
-		43E763A02B16BDEF001DFAE3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Data/Session.swift; sourceTree = "<group>"; };
+		43E763A02B16BDEF001DFAE3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		43E763A12B16BDEF001DFAE3 /* CompassManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompassManager.swift; path = Data/CompassManager.swift; sourceTree = "<group>"; };
-		43E763A22B16BDEF001DFAE3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Data/User.swift; sourceTree = "<group>"; };
-		43E763A32B16BDEF001DFAE3 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLocation.swift; path = Data/UserLocation.swift; sourceTree = "<group>"; };
+		43E763A22B16BDEF001DFAE3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		43E763A32B16BDEF001DFAE3 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		43F4A38F2B17DBE400ABD35D /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		43F4A3912B17DE2000ABD35D /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		43F4A3932B17E87600ABD35D /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -138,17 +146,28 @@
 		430E211E2B0CFBF10044E0EF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				43E7639E2B16BDEF001DFAE3 /* Location.swift */,
-				43E763A02B16BDEF001DFAE3 /* Session.swift */,
-				43E763A22B16BDEF001DFAE3 /* User.swift */,
-				43E763A32B16BDEF001DFAE3 /* UserLocation.swift */,
+				43F4A3932B17E87600ABD35D /* Manager.swift */,
 				43E763A12B16BDEF001DFAE3 /* CompassManager.swift */,
 				43E7639F2B16BDEF001DFAE3 /* LocationManager.swift */,
 				43F4A38F2B17DBE400ABD35D /* AuthorizationManager.swift */,
 				43F4A3912B17DE2000ABD35D /* NotificationManager.swift */,
-				43F4A3932B17E87600ABD35D /* Manager.swift */,
+				43C1FA632B18DB7F00B1F9D9 /* NetworkManager.swift */,
+				43BB2B7F2B195BDD00EF3111 /* LocalDatabase.swift */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		43C1FA652B18DC0300B1F9D9 /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				43E7639E2B16BDEF001DFAE3 /* Location.swift */,
+				43E763A02B16BDEF001DFAE3 /* Session.swift */,
+				43E763A22B16BDEF001DFAE3 /* User.swift */,
+				43E763A32B16BDEF001DFAE3 /* UserLocation.swift */,
+				43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */,
+				43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */,
+			);
+			path = Structures;
 			sourceTree = "<group>";
 		};
 		43C9338E2B068E9100D3B149 = {
@@ -157,6 +176,7 @@
 				43C933AA2B068E9200D3B149 /* orientAppTests */,
 				43C933B42B068E9200D3B149 /* orientAppUITests */,
 				43C933992B068E9100D3B149 /* orientApp */,
+				43C1FA652B18DC0300B1F9D9 /* Structures */,
 				430E211E2B0CFBF10044E0EF /* Data */,
 				430E211D2B0CFBDA0044E0EF /* Views */,
 				43C933982B068E9100D3B149 /* Products */,
@@ -297,6 +317,9 @@
 				Base,
 			);
 			mainGroup = 43C9338E2B068E9100D3B149;
+			packageReferences = (
+				43BB2B812B195EC300EF3111 /* XCRemoteSwiftPackageReference "GRDB" */,
+			);
 			productRefGroup = 43C933982B068E9100D3B149 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,9 +364,11 @@
 			files = (
 				FA510B232B07C8E5005A3FC8 /* LoginOrRegisterView.swift in Sources */,
 				43E763A42B16BDEF001DFAE3 /* Location.swift in Sources */,
+				43BB2B802B195BDD00EF3111 /* LocalDatabase.swift in Sources */,
 				43C9339D2B068E9100D3B149 /* ContentView.swift in Sources */,
 				43E7639A2B16BDE5001DFAE3 /* ControlsView.swift in Sources */,
 				43E7639D2B16BDE5001DFAE3 /* SettingsView.swift in Sources */,
+				43C1FA672B18DC3700B1F9D9 /* CheckPoint.swift in Sources */,
 				FA510B1F2B07C8E5005A3FC8 /* LoginView.swift in Sources */,
 				43C933C52B06B33100D3B149 /* MapView.swift in Sources */,
 				FA510B252B07C8E5005A3FC8 /* RegisterView.swift in Sources */,
@@ -361,7 +386,9 @@
 				43F4A3942B17E87600ABD35D /* Manager.swift in Sources */,
 				43E763A72B16BDEF001DFAE3 /* CompassManager.swift in Sources */,
 				43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */,
+				43C1FA642B18DB7F00B1F9D9 /* NetworkManager.swift in Sources */,
 				FA510B1D2B07C8E5005A3FC8 /* MapOptionsView.swift in Sources */,
+				43C1FA692B18DC3F00B1F9D9 /* WayPoint.swift in Sources */,
 				43F4A3922B17DE2000ABD35D /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,6 +719,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		43BB2B812B195EC300EF3111 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 43C9338F2B068E9100D3B149 /* Project object */;
 }

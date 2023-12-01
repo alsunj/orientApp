@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct orientAppApp: App {
+    @StateObject private var locationManager = LocationManager.shared
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(locationManager)
+
         }
     }
 }

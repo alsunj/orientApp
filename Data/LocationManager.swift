@@ -9,10 +9,10 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject {
     
 
-    @Published var userLocation: CLLocation?
-    @Published var userLocations: [CLLocationCoordinate2D]?
-    @Published var checkpoints: [String: CLLocationCoordinate2D] = [:]
-    @Published var waypoint: CLLocationCoordinate2D?
+    @Published var userLocation: CLLocationCoordinate2D?
+    @Published var userLocations: [CLLocationCoordinate2D] = []
+    @Published var checkpoints: [CheckPoint] = []
+    @Published var waypoint: WayPoint?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     static let shared = LocationManager()
@@ -38,14 +38,39 @@ class LocationManager: NSObject, ObservableObject {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
+        manager.startUpdatingLocation()
+
         self.setup()
     }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.authorizationStatus = status
+    }
     
-    func requestLocation() -> Bool {
-        AuthorizationManager.requestAuthorization(for: manager)
-        return authorizationStatus == .authorizedWhenInUse
+    func requestLocation() {
+            NotificationManager.shared.checkNotificationPermission()
+            manager.delegate = self
+            manager.requestWhenInUseAuthorization()
+        }
+    func checkAndUpdateUserLocation(_ newLocation: CLLocationCoordinate2D) {
+        guard let lastLocation = userLocations.last else {
+            // If there is no previous location, add the new location
+            userLocations.append(newLocation)
+            return
+        }
+        let newCLLocation = CLLocation(latitude: newLocation.latitude, longitude: newLocation.longitude)
+        let lastCLLocation = CLLocation(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
 
+        let distance = newCLLocation.distance(from: lastCLLocation)
 
+        if distance >= 10.0 {
+            userLocations.append(newLocation)
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.first else { return }
+            let newLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            checkAndUpdateUserLocation(newLocation)
+            self.userLocation = newLocation
         }
 
     
@@ -57,16 +82,7 @@ class LocationManager: NSObject, ObservableObject {
     }
    
 
-    func addCheckpoint(coordinate: CLLocationCoordinate2D) {
-            let checkpointName = "Checkpoint \(checkpoints.count + 1)"
-            checkpoints[checkpointName] = coordinate
-            print(checkpoints)
-        
-    }
- 
-    func addWaypoint(coordinate: CLLocationCoordinate2D) {
-            waypoint = coordinate
-    }
+
     
     var distanceFromWpString: String {
             return String(format: "%.2f", distanceFromWp)
@@ -82,35 +98,7 @@ class LocationManager: NSObject, ObservableObject {
 
 
  }
-
-
-
-
-
 extension LocationManager: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        authorizationStatus = status
-
-       }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        
-        if let previousLocation = userLocations?.last {
-            let distance = location.distance(from: CLLocation(latitude: previousLocation.latitude, longitude: previousLocation.longitude))
-            print(distance)
-            
-            if distance > 0 && distance <= 10.0 { userLocations!.append(location.coordinate) } // I know that the array exists otherwise I would not make it here
-        } else {
-            userLocations = [location.coordinate]
-        }
-        
-        self.userLocation = location
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        
-        print(newHeading.magneticHeading)
-    }
 }
+
 

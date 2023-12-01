@@ -17,12 +17,6 @@ struct LoginOrRegisterView: View {
                 
                 
                 VStack(spacing: 15) {
-                    Text("Navigator")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
-                        .foregroundColor(.blue)
-                    
                     Text("Sign in or Create account:")
                         .font(.title)
                         .padding()

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import CoreLocation
+
+
+struct WayPoint {
+    var wayPointId: UUID
+    var sessionId: UUID
+    var latitude: CLLocationDegrees
+    var longitude: CLLocationDegrees
+}

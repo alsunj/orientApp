@@ -12,7 +12,7 @@ import MapKit
 struct ContentView: View {
     
     var body: some View {
-        MapView()
+        LoginOrRegisterView()
     }
 }
 

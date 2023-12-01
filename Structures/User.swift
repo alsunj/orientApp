@@ -12,6 +12,5 @@ struct User {
     var firstName: String
     var lastName: String
     var email: String
-    var passwordHash: String
-    var salt: String
+    var password: String
 }

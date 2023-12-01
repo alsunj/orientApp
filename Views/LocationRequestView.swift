@@ -9,6 +9,8 @@ import SwiftUI
 import MapKit
 
 struct LocationRequestView: View {
+    @EnvironmentObject var locationManager: LocationManager
+
     @State private var locationDeniedOnce = false
 
     var body: some View {
@@ -25,15 +27,11 @@ struct LocationRequestView: View {
                 
                 HStack(spacing: 45) {
                     Button {
-                        if LocationManager.shared.requestLocation() {
-                        } else {
-                            // Location request denied
-                            if !locationDeniedOnce {
-                                locationDeniedOnce = true
-                                openAppSettings()
-                            }
-                        }
-                    }label: {
+                        if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
+                                                    openAppSettings()
+                                                } else {
+                                                    AuthorizationManager.requestLocationAuthorization()
+                                                }                    }label: {
                         Text("Allow location")
                             .padding()
                             .foregroundColor(.white.opacity(0.9))
@@ -51,13 +49,14 @@ struct LocationRequestView: View {
         }
     }
     public func openAppSettings() {
-        guard URL(string: UIApplication.openSettingsURLString) != nil else { return }
-            
-            if let bundleIdentifier = Bundle.main.bundleIdentifier,
-               let appSettingsURL = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleIdentifier)") {
-                UIApplication.shared.open(appSettingsURL)
-            }
+        guard let appSettingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+        
+        if UIApplication.shared.canOpenURL(appSettingsURL) {
+            UIApplication.shared.open(appSettingsURL, options: [:], completionHandler: nil)
+        } else {
+            // Handle error or provide alternative action
         }
+    }
 
 }
 
