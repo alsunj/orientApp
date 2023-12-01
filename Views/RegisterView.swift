@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @EnvironmentObject var smanager: Manager
+
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var email = ""
@@ -24,7 +26,7 @@ struct RegisterView: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 20) {
-                    VStack {
+                    VStack (spacing: 10){
                         Text("Create account")
                             .font(.title)
                             .padding()
@@ -77,37 +79,48 @@ struct RegisterView: View {
                            
                     }
 
-                    Button("Create") {
-                        AuthorizationManager.shared.validateAndCreateUser(
+                    Button(action: {
+                        Task {
+                            await
+                            AuthorizationManager.shared.validateAndCreateUser(
                                 firstName: firstName,
                                 lastName: lastName,
                                 email: email,
                                 password: password,
                                 password2: password2
-                            ) { success in
-                                if success {
-                                    // User creation successful
-                                    registerSuccessful = true
-                                } else {
-                                    // Handle the case where user creation failed
-                                    // You can show an error message to the user
-                                }
-                            }
+                            )
+                            registerSuccessful = Manager.shared.registerLoading
+
                         }
                     }
-                    .frame(maxWidth: 265)
+                           
+                        ,label: {
+                            if smanager.registerLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Text("Create")
+                            }
+                        })
+                    .frame(width: 265)
                     .padding()
                     .background(.blue)
                     .foregroundColor(.white.opacity(0.9))
                     .font(.headline)
                     .cornerRadius(12.0)
 
-                    NavigationLink {
-                        ContentView()
-                    } label: {
-                        EmptyView()
+
+
+
+                    
                     }
-                    .hidden()
+                   .disabled(smanager.registerLoading)
+                   .padding(.vertical, 20) // Add vertical padding of 20 points
+                   .frame(maxWidth: 265)
+                   .padding()
+                   .foregroundColor(.white.opacity(0.9))
+                   .font(.headline)
+                   .cornerRadius(12.0)
                     .navigationDestination(
                         isPresented: $registerSuccessful) {
                         LoginView()
