@@ -8,9 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		430E21202B0CFCFA0044E0EF /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430E211F2B0CFCFA0044E0EF /* CompassView.swift */; };
+		4341DEC72B1A06DF00538495 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC02B1A06DF00538495 /* NotificationManager.swift */; };
+		4341DEC82B1A06DF00538495 /* CompassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC12B1A06DF00538495 /* CompassManager.swift */; };
+		4341DEC92B1A06DF00538495 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC22B1A06DF00538495 /* LocalDatabase.swift */; };
+		4341DECA2B1A06DF00538495 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC32B1A06DF00538495 /* NetworkManager.swift */; };
+		4341DECB2B1A06DF00538495 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC42B1A06DF00538495 /* LocationManager.swift */; };
+		4341DECC2B1A06DF00538495 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC52B1A06DF00538495 /* Manager.swift */; };
+		4341DECD2B1A06DF00538495 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341DEC62B1A06DF00538495 /* AuthorizationManager.swift */; };
 		43C1FA672B18DC3700B1F9D9 /* CheckPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */; };
 		43C1FA692B18DC3F00B1F9D9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */; };
-		43C44FE32B196DBE0064DD51 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 43C44FE22B196DBE0064DD51 /* Data */; };
 		43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339A2B068E9100D3B149 /* orientAppApp.swift */; };
 		43C9339D2B068E9100D3B149 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9339C2B068E9100D3B149 /* ContentView.swift */; };
 		43C9339F2B068E9200D3B149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C9339E2B068E9200D3B149 /* Assets.xcassets */; };
@@ -55,9 +61,15 @@
 
 /* Begin PBXFileReference section */
 		430E211F2B0CFCFA0044E0EF /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
+		4341DEC02B1A06DF00538495 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		4341DEC12B1A06DF00538495 /* CompassManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassManager.swift; sourceTree = "<group>"; };
+		4341DEC22B1A06DF00538495 /* LocalDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
+		4341DEC32B1A06DF00538495 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4341DEC42B1A06DF00538495 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4341DEC52B1A06DF00538495 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		4341DEC62B1A06DF00538495 /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		43C1FA662B18DC3700B1F9D9 /* CheckPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPoint.swift; sourceTree = "<group>"; };
 		43C1FA682B18DC3F00B1F9D9 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
-		43C44FE22B196DBE0064DD51 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		43C933972B068E9100D3B149 /* orientApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orientApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C9339A2B068E9100D3B149 /* orientAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orientAppApp.swift; sourceTree = "<group>"; };
 		43C9339C2B068E9100D3B149 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +143,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4341DEBD2B1A06AA00538495 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4341DEC62B1A06DF00538495 /* AuthorizationManager.swift */,
+				4341DEC12B1A06DF00538495 /* CompassManager.swift */,
+				4341DEC22B1A06DF00538495 /* LocalDatabase.swift */,
+				4341DEC42B1A06DF00538495 /* LocationManager.swift */,
+				4341DEC52B1A06DF00538495 /* Manager.swift */,
+				4341DEC32B1A06DF00538495 /* NetworkManager.swift */,
+				4341DEC02B1A06DF00538495 /* NotificationManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		43C1FA652B18DC0300B1F9D9 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +177,7 @@
 				43C933B42B068E9200D3B149 /* orientAppUITests */,
 				43C933992B068E9100D3B149 /* orientApp */,
 				43C1FA652B18DC0300B1F9D9 /* Structures */,
-				43C44FE22B196DBE0064DD51 /* Data */,
+				4341DEBD2B1A06AA00538495 /* Data */,
 				430E211D2B0CFBDA0044E0EF /* Views */,
 				43C933982B068E9100D3B149 /* Products */,
 			);
@@ -312,7 +338,6 @@
 			files = (
 				43C933A22B068E9200D3B149 /* Preview Assets.xcassets in Resources */,
 				43C9339F2B068E9200D3B149 /* Assets.xcassets in Resources */,
-				43C44FE32B196DBE0064DD51 /* Data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,21 +366,28 @@
 				43E763A42B16BDEF001DFAE3 /* Location.swift in Sources */,
 				43C9339D2B068E9100D3B149 /* ContentView.swift in Sources */,
 				43E7639A2B16BDE5001DFAE3 /* ControlsView.swift in Sources */,
+				4341DEC72B1A06DF00538495 /* NotificationManager.swift in Sources */,
 				43E7639D2B16BDE5001DFAE3 /* SettingsView.swift in Sources */,
+				4341DEC92B1A06DF00538495 /* LocalDatabase.swift in Sources */,
 				43C1FA672B18DC3700B1F9D9 /* CheckPoint.swift in Sources */,
 				FA510B1F2B07C8E5005A3FC8 /* LoginView.swift in Sources */,
+				4341DECD2B1A06DF00538495 /* AuthorizationManager.swift in Sources */,
 				43C933C52B06B33100D3B149 /* MapView.swift in Sources */,
 				FA510B252B07C8E5005A3FC8 /* RegisterView.swift in Sources */,
 				43C933C92B06BBCF00D3B149 /* LocationRequestView.swift in Sources */,
+				4341DECB2B1A06DF00538495 /* LocationManager.swift in Sources */,
 				FA510B242B07C8E5005A3FC8 /* MapStatisticsView.swift in Sources */,
 				43E7639B2B16BDE5001DFAE3 /* PictureTableView.swift in Sources */,
 				43E763A92B16BDEF001DFAE3 /* UserLocation.swift in Sources */,
+				4341DECC2B1A06DF00538495 /* Manager.swift in Sources */,
 				430E21202B0CFCFA0044E0EF /* CompassView.swift in Sources */,
 				43E7639C2B16BDE5001DFAE3 /* TestView.swift in Sources */,
 				43E763A62B16BDEF001DFAE3 /* Session.swift in Sources */,
 				43E763992B16BDE5001DFAE3 /* TableView.swift in Sources */,
 				43E763A82B16BDEF001DFAE3 /* User.swift in Sources */,
 				43C9339B2B068E9100D3B149 /* orientAppApp.swift in Sources */,
+				4341DEC82B1A06DF00538495 /* CompassManager.swift in Sources */,
+				4341DECA2B1A06DF00538495 /* NetworkManager.swift in Sources */,
 				FA510B1D2B07C8E5005A3FC8 /* MapOptionsView.swift in Sources */,
 				43C1FA692B18DC3F00B1F9D9 /* WayPoint.swift in Sources */,
 			);
@@ -582,6 +614,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9F6S65ZJ37;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -601,6 +634,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9F6S65ZJ37;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -619,6 +653,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9F6S65ZJ37;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientAppUITests;
@@ -636,6 +671,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9F6S65ZJ37;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = taltech.ee.orientAppUITests;
