@@ -16,6 +16,8 @@ class AuthorizationManager {
     @Published var password2Error = false
     @Published var registerSuccessful = false
     static let shared = AuthorizationManager()
+    var loginSuccessful = false
+    
     
     
     
@@ -36,57 +38,83 @@ class AuthorizationManager {
         return credential.count >= 3
     }
     
-
+    
     func validateAndCreateUser(
-            firstName: String,
-            lastName: String,
-            email: String,
-            password: String,
-            password2: String,
-            completion: @escaping (Bool) -> Void
-        ) {
-            firstNameError = !isCredentialValid(firstName)
-            lastNameError = !isCredentialValid(lastName)
-            emailError = !isEmailValid(email)
-            passwordError = !isCredentialValid(password)
-            password2Error = !isCredentialValid(password2) || (password != password2)
-            
-            let isValid = !firstNameError && !lastNameError && !emailError && !passwordError && !password2Error
-            if isValid {
-                let user = User(userId: UUID(), firstName: firstName, lastName: lastName, email: email, password: password)
-                
-                NetworkManager.shared.registerUser(user: user) { result in
-                    switch result {
-                    case .success:
-                        // Handle success, e.g., set registerSuccessful flag
-                        self.registerSuccessful = true
-                        completion(true)
-                    case .failure(let error):
-                        // Handle failure, e.g., display an error message
-                        print("Error registering user: \(error)")
-                        completion(false)
-                    }
-                }
-            } else {
-                completion(false)
-            }
-        }
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        password2: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        firstNameError = !isCredentialValid(firstName)
+        lastNameError = !isCredentialValid(lastName)
+        emailError = !isEmailValid(email)
+        passwordError = !isCredentialValid(password)
+        password2Error = !isCredentialValid(password2) || (password != password2)
         
-        func createUser(username: String, password: String) {
-            // Assuming you have some local storage mechanism to store the user locally
-            // You can use UserDefaults or CoreData, for example
-            // Store the user locally
-            // Store the user locally using your preferred storage mechanism
-            
-            // After storing the user locally, proceed to register the user with the network manager
-            
+        let isValid = !firstNameError && !lastNameError && !emailError && !passwordError && !password2Error
+        if isValid {
+            Manager.shared.registerUser(
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            ) { result in
+                switch result {
+                case .success:
+                    // Handle success, e.g., set registerSuccessful flag
+                    self.registerSuccessful = true
+                    completion(true)
+                case .failure(let error):
+                    // Handle failure, e.g., display an error message
+                    print("Error registering user: \(error)")
+                    completion(false)
+                }
+            }
+        } else {
+            completion(false)
         }
-        func reset() {
-            
+    }
+    func validateAndLogin(
+        email: String,
+        password: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        // Validation logic for email and password
+        emailError = !isEmailValid(email)
+        passwordError = !isCredentialValid(password)
+        
+        
+        let isValid = !emailError && !passwordError
+        
+        if isValid {
+            Manager.shared.loginUser(email: email, password: password) { result in
+                switch result {
+                case .success:
+                    // Handle success, e.g., set loginSuccessful flag
+                    self.loginSuccessful = true
+                    completion(true)
+                case .failure(let error):
+                    // Handle failure, e.g., display an error message
+                    print("Error logging in: \(error)")
+                    completion(false)
+                }
+            }
+        } else {
+            completion(false)
         }
-        func pause()
-        {
-            
-        }
+    }
+    
+    
+    
+    
+    func reset() {
+        
+    }
+    func pause()
+    {
+        
+    }
     
 }

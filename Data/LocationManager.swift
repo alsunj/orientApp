@@ -11,9 +11,10 @@ class LocationManager: NSObject, ObservableObject {
 
     @Published var userLocation: CLLocationCoordinate2D?
     @Published var userLocations: [CLLocationCoordinate2D] = []
-    @Published var checkpoints: [CheckPoint] = []
-    @Published var waypoint: WayPoint?
+    @Published var checkpoints: [String: CLLocationCoordinate2D] = [:]
+    @Published var waypoint: CLLocationCoordinate2D?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    @Published var waypointPresented: Bool = false
 
     static let shared = LocationManager()
     static var idCounter = 0

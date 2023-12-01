@@ -79,20 +79,18 @@ struct RegisterView: View {
 
                     Button("Create") {
                         AuthorizationManager.shared.validateAndCreateUser(
-                                firstName: firstName,
-                                lastName: lastName,
-                                email: email,
-                                password: password,
-                                password2: password2
-                            ) { success in
-                                if success {
-                                    // User creation successful
-                                    registerSuccessful = true
-                                } else {
-                                    // Handle the case where user creation failed
-                                    // You can show an error message to the user
+                               firstName: firstName,
+                               lastName: lastName,
+                               email: email,
+                               password: password,
+                               password2: password2
+                           ) { success in
+                               if success {
+                                   registerSuccessful = true
+                               } else {
+                                   // Handle registration failure if needed
+                               }
                                 }
-                            }
                         }
                     }
                     .frame(maxWidth: 265)
