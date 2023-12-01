@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CompassView: View {
     @ObservedObject var compassManager = CompassManager()
-
+    
     var body: some View {
         VStack {
             Image(systemName: "arrow.up")

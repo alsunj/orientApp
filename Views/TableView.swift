@@ -15,7 +15,7 @@ struct Table: View {
         HStack (spacing: 5){
             VStack() {
                 Text(" " + variable + "  ")
-                    
+                
             }
             VStack() {
                 Text(" \(value) ")
@@ -23,8 +23,7 @@ struct Table: View {
         }
         
         .padding(.bottom)
-        .font(.system(size: 10))
-        .background(Color.gray.opacity(0.1))
+        .font(.system(size: 9))
         .cornerRadius(7)
         .frame(maxWidth: UIScreen.main.bounds.size.width / 3.5)
     }
