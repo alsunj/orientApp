@@ -28,8 +28,7 @@ struct PictureTableView: View {
             }
         }
         .padding(.bottom)
-        .font(.system(size: 10))
-        .background(Color.gray.opacity(0.1))
+        .font(.system(size: 9))
         .cornerRadius(7)
         .frame(maxWidth: UIScreen.main.bounds.size.width / 3.5)
     }

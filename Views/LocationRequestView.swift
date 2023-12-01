@@ -10,7 +10,6 @@ import MapKit
 
 struct LocationRequestView: View {
     @EnvironmentObject var locationManager: LocationManager
-
     @State private var locationDeniedOnce = false
 
     var body: some View {
@@ -27,12 +26,23 @@ struct LocationRequestView: View {
                 
                 HStack(spacing: 45) {
                     Button {
-                        if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
-                                                    openAppSettings()
-                                                } else {
-                                                    AuthorizationManager.requestLocationAuthorization()
-                                                }                    }label: {
-                        Text("Allow location")
+                        
+                        Task {
+                            if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
+                                openAppSettings()
+                            } else {
+                               AuthorizationManager.requestLocationAuthorization()
+                                
+                                if NotificationManager.shared.isNotificationAuthorized() {
+                                  
+                                } else {
+                                    AuthorizationManager.requestNotificationAuthorization()
+
+                                }
+                            }
+                        }
+                    }label: {
+                        Text("Allow Permissions")
                             .padding()
                             .foregroundColor(.white.opacity(0.9))
                             .font(.headline)

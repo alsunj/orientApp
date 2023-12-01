@@ -6,41 +6,104 @@
 //
 
 import Foundation
+import MapKit
 
-class Manager {
+class Manager : NSObject, ObservableObject {
+
     static let shared = Manager()
+    @Published var usertoken: String?
+    @Published var sessionStarted: Bool = false
+    @Published var sessionLoading = false
+    @Published var loginLoading = false
+    @Published var registerLoading = false
+    @Published var currentUser: User?
+    typealias GpsSessionType = NetworkManager.GpsSessionType
+    typealias LocationType = NetworkManager.LocationType
+
+
     
+
     
-    func registerUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        NetworkManager.shared.registerUser(user: user, completion: completion)
+    func register(firstName: String, lastName: String, email: String, password: String) async {Task {
+        registerLoading = true
+        let registerStarted = await NetworkManager.shared.register(firstName: firstName, lastName: lastName, email: email, password: password)
+        if registerStarted {
+            print("Session started successfully")
+        } else {
+            print("Failed to start the session")
+
+        }
+        registerLoading = false
+
+    }}
+    
+    func login(email: String, password: String) {
+        loginLoading = true
+
+        Task {
+            
+            do {
+                let user = await NetworkManager.shared.login(email: email, password: password)
+                    self.currentUser = user
+                
+            } catch {
+                print("Login error: \(error)")
+
+            }
+            loginLoading = false
+        }
+    }
+
+
+        
+    func createSession(name: String, description: String, mode: GpsSessionType) async {
+        Task {
+            sessionLoading = true
+
+            let sessionStarted = await NetworkManager.shared.createSession(name: "SessionName", description: "SessionDescription", mode: mode)
+
+            DispatchQueue.main.async {
+                self.sessionStarted = sessionStarted // Update on the main thread
+                if sessionStarted {
+                    print("Session started successfully")
+                    LocationManager.shared.trackingEnabled = true
+                } else {
+                    print("Failed to start the session")
+                }
+            }
+            sessionLoading = false
+
+        }
     }
     
-    func loginUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        NetworkManager.shared.loginUser(user: user, completion: completion)
-    }
     
-    func startNewSession(session: Session, completion: @escaping (Result<Session, Error>) -> Void) {
-        NetworkManager.shared.startNewSession(session: session, completion: completion)
-    }
+    func updateLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, locationType: LocationType) async {
+           await NetworkManager.shared.updateLocation(latitude: latitude, longitude: longitude, locationType: locationType)
+       }
+
+        
+        
+        func saveUserToUserDefaults(user: User, forKey key: String) {
+            currentUser = user
+            if let encodedUser = try? JSONEncoder().encode(user) {
+                UserDefaults.standard.set(encodedUser, forKey: key)
+            }
+        }
     
-    func getLocationTypes(completion: @escaping (Result<[Location], Error>) -> Void) {
-        NetworkManager.shared.getLocationTypes(completion: completion)
-    }
     
-    func postLocationUpdate(location: Location, completion: @escaping (Result<Void, Error>) -> Void) {
-        NetworkManager.shared.postLocationUpdate(location: location, completion: completion)
+    func logout(){
+        currentUser = nil
+        
     }
-    
-    func resetAllManagers() {
+
+    func reset() {
         LocationManager.shared.reset()
         CompassManager.shared.reset()
-        AuthorizationManager.shared.reset()
-        NotificationManager.shared.reset()
+    // no point as it locationmanager and notificationmanager is reset individually    AuthorizationManager.shared.reset()
+        NotificationManager.shared.resetNotifications()
     }
     func pauseAllManagers(){
         LocationManager.shared.pause()
-        CompassManager.shared.pause()
-        AuthorizationManager.shared.pause()
-        NotificationManager.shared.pause()
     }
 }
+
