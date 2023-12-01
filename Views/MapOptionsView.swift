@@ -10,9 +10,6 @@ import SwiftUI
 struct MapOptionsView: View {
     var body: some View {
         HStack {
-            CompassView()
-                .tint(.black)
-                .controlSize(.large)
             Spacer()
             
             Button {
@@ -25,7 +22,7 @@ struct MapOptionsView: View {
             .background(.green)
             .foregroundColor(.white)
             .clipShape(Capsule())
-            .font(.system(size: 24))
+            .font(.system(size: 16))
             
             Spacer()
             
@@ -39,7 +36,7 @@ struct MapOptionsView: View {
             .background(.green)
             .foregroundColor(.white)
             .clipShape(Capsule())
-            .font(.system(size: 24))
+            .font(.system(size: 16))
             
             Spacer()
             
@@ -53,7 +50,7 @@ struct MapOptionsView: View {
             .background(.green)
             .foregroundColor(.white)
             .clipShape(Capsule())
-            .font(.system(size: 24))
+            .font(.system(size: 16))
             
             Spacer()
             
@@ -67,19 +64,13 @@ struct MapOptionsView: View {
             .background(.green)
             .foregroundColor(.white)
             .clipShape(Capsule())
-            .font(.system(size: 24))
+            .font(.system(size: 16))
             
             Spacer()
         }
         .padding()
-        .background(
-            Color.init(
-                .sRGB,
-                red: 144/255.0,   // Red component
-                green: 238/255.0, // Green component
-                blue: 144/255.0,  // Blue component
-                opacity: 0.8      // Opacity
-            ))
+        .background(Color(red: 120/255.0, green: 220/255.0, blue: 120/255.0))
+
     }
             
 }

@@ -9,12 +9,16 @@ import Foundation
 
 class NetworkManager {
     static let shared = NetworkManager()
-    
     private let baseURL = "https://sportmap.akaver.com/api/v1.0/account"
+    private let registerEndpoint = "/register"
+    private let loginEndpoint = "/login"
+    private let gpsSessionsEndpoint = "/GpsSessions"
+    private let gpsLocations = "/GpsLocations"
+    private let gpsLocationTypes = "/GpsLocationTypes"
     
     // Authentication
     func registerUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-           let registerURL = URL(string: "\(baseURL)/register")!
+           let registerURL = URL(string: "\(baseURL)\(registerEndpoint)")!
         print("Register URL: \(registerURL)")
 
            let requestBody: [String: Any] = [
@@ -35,17 +39,15 @@ class NetworkManager {
                 }
             }
        }
-    
-    func loginUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        let loginURL = URL(string: "\(baseURL)/login")!
+    func loginUser(credentials: LoginUser, completion: @escaping (Result<String, Error>) -> Void) {            let loginURL = URL(string: "\(baseURL)\(loginEndpoint)")!
         let requestBody: [String: Any] = [
-            "email": user.email,
-            "password": user.password
-        ]
-        
-        performRequest(url: loginURL, method: "POST", body: requestBody, completion: completion)
+                    "email": credentials.email,
+                    "password": credentials.password
+                ]
+
+            performRequest(url: loginURL, method: "POST", body: requestBody, completion: completion)
+        }
     
-    }
     
     private func performRequest(url: URL, method: String, body: [String: Any], completion: @escaping (Result<String, Error>) -> Void) {
         var request = URLRequest(url: url)
@@ -87,11 +89,11 @@ class NetworkManager {
     }
     
     func startNewSession(session: Session, completion: @escaping (Result<Session, Error>) -> Void) {
-        let startSessionURL = URL(string: "\(baseURL)/GpsSessions")!
+        let startSessionURL = URL(string: "\(baseURL)\(gpsSessionsEndpoint)")!
         let requestBody: [String: Any] = [
-            "name": session.name,
-            "description": session.description,
-            "recordedAt": session.recordedAt,
+            "name": session.sessionName,
+            "description": session.sessionDescription,
+            "recordedAt": session.createdAt,
             "minSpeed": session.minSpeed,
             "maxSpeed": session.maxSpeed
         ]
@@ -114,12 +116,54 @@ class NetworkManager {
     }
 
     // Locations
-    func getLocationTypes(completion: @escaping (Result<[Location], Error>) -> Void) {
-        // Implement get location types request
+    func getLocationTypes(requestBody: [String: Any]? = nil, completion: @escaping (Result<[UserLocation], Error>) -> Void) {
+        let locationTypesURL = URL(string: "\(baseURL)/GpsLocationTypes")!
+
+        performRequest(url: locationTypesURL, method: "GET", body: requestBody ?? [:]) { (result: Result<String, Error>) in
+            switch result {
+            case .success(let responseString):
+                if let responseData = responseString.data(using: .utf8) {
+                    do {
+                        let decodedLocationTypes = try JSONDecoder().decode([UserLocation].self, from: responseData)
+                        completion(.success(decodedLocationTypes))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                } else {
+                    let error = NSError(domain: "Invalid response", code: 0, userInfo: nil)
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
-    func postLocationUpdate(location: Location, completion: @escaping (Result<Void, Error>) -> Void) {
-        // Implement post location update request
+
+
+
+    func postLocationUpdate(location: UserLocation, completion: @escaping (Result<Void, Error>) -> Void) {
+        let postLocationURL = URL(string: "\(baseURL)/GpsLocations")!
+
+        let requestBody: [String: Any] = [
+            "recordedAt": location.createdAt,
+            "latitude": location.latitude,
+            "longitude": location.longitude,
+            "accuracy": location.accuracy!,
+            "altitude": location.altitude!,
+            "verticalAccuracy": location.verticalAccuracy!,
+            "gpsSessionId": location.sessionId,
+            "gpsLocationTypeId": location.locationTypeId
+        ]
+
+        performRequest(url: postLocationURL, method: "POST", body: requestBody) { (result: Result<String, Error>) in
+            switch result {
+            case .success:
+                completion(.success(()))  // Successfully posted, no specific value to return
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
 
