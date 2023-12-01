@@ -6,123 +6,325 @@
 //
 
 import Foundation
+import MapKit
+
 
 class NetworkManager {
     static let shared = NetworkManager()
+    private let baseURL = "https://sportmap.akaver.com/api/v1.0"
+    private let registerEndpoint = "/account/register"
+    private let loginEndpoint = "/account/login"
+    private let gpsSessionsEndpoint = "/GpsSessions"
+    private let gpsLocations = "/gpsLocations"
     
-    private let baseURL = "https://sportmap.akaver.com/api/v1.0/account"
+    @Published var isLoading : Bool = false
+    @Published var savedSessionId: String? = nil
+    @Published var createSessionSuccess : Bool = false
+    @Published var savedUser: User? = nil
+    @Published var registeredUser: User? = nil
     
-    // Authentication
-    func registerUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-           let registerURL = URL(string: "\(baseURL)/register")!
-        print("Register URL: \(registerURL)")
-
-           let requestBody: [String: Any] = [
-               "email": user.email,
-               "password": user.password,
-               "lastName": user.lastName,
-               "firstName": user.firstName
-           ]
-           
-        performRequest(url: registerURL, method: "POST", body: requestBody) { result in
-                switch result {
-                case .success(let responseString):
-                    print("Registration successful. Response: \(responseString)")
-                    completion(.success(responseString))
-                case .failure(let error):
-                    print("Registration failed. Error: \(error)")
-                    completion(.failure(error))
-                }
-            }
-       }
     
-    func loginUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        let loginURL = URL(string: "\(baseURL)/login")!
-        let requestBody: [String: Any] = [
-            "email": user.email,
-            "password": user.password
+    public enum GpsSessionType { case walking, running}
+    public enum LocationType { case location, checkPoint, wayPoint}
+    
+  
+    func register(firstName: String, lastName: String, email: String, password: String) async -> User? {
+        isLoading = true
+        let urlString = "\(baseURL)\(registerEndpoint)"
+        let data = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "password": password,
         ]
         
-        performRequest(url: loginURL, method: "POST", body: requestBody, completion: completion)
-    
-    }
-    
-    private func performRequest(url: URL, method: String, body: [String: Any], completion: @escaping (Result<String, Error>) -> Void) {
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let url = URL(string: urlString) else {
+            print("Unable to make string: \(urlString) to URL object")
+            isLoading = false
+            return nil
+        }
+        guard let encoded = try? JSONEncoder().encode(data) else {
+            print("Failed to encode data: \(data)")
+            isLoading = false
+            return nil
+        }
+        
+        var req = URLRequest(url: url)
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpMethod = "POST"
         
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: body)
+            let (data, response) = try await URLSession.shared.upload(for: req, from: encoded)
+            
+            guard let res = response as? HTTPURLResponse else {
+                print("Invalid response")
+                isLoading = false
+                return nil
+            }
+            
+            if res.statusCode == 200 {
+                // Process the successful response
+                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    print("json as data from register: \(json)")
+                    
+                    let token = json["token"] as! String
+                    
+                    registeredUser = User(
+                        email: email,
+                        password: password,
+                        firstName: firstName,
+                        lastName: lastName,
+                        jwtToken: token,
+                        sessionIds: []
+
+                    )
+            //        Manager.shared.saveUserToUserDefaults(user: registeredUser!, forKey: token)
+                    print("Token: \(token)")
+                    
+                    isLoading = false
+                    return registeredUser
+                }
+            } else if res.statusCode == 404 {
+                print("User with this email already exists!")
+            } else {
+                print("HTTP Status Code: \(res.statusCode)")
+                
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response Data: \(responseString)")
+                    // Handle the error using the responseString
+                } else {
+                    print("Failed to convert response data to string.")
+                    // Handle the error appropriately
+                }
+                // Handle the error appropriately
+            }
         } catch {
-            completion(.failure(error))
+            print("Error: \(error)")
+        }
+        
+        isLoading = false
+        return nil
+    }  
+    func login(email: String, password: String) async -> String {
+      isLoading = true
+
+      let urlString = "\(baseURL)\(loginEndpoint)"
+      let data = [
+          "email": email,
+          "password": password
+      ]
+
+      guard let url = URL(string: urlString) else {
+          print("Unable to make string: \(urlString) to URL object")
+          isLoading = false
+          return ""
+      }
+      guard let encoded = try? JSONEncoder().encode(data) else {
+          print("Failed to encode data: \(data)")
+          isLoading = false
+          return ""
+      }
+
+      var req = URLRequest(url: url)
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      req.httpMethod = "POST"
+
+      do {
+          let (data, response) = try await URLSession.shared.upload(for: req, from: encoded)
+
+          guard let res = response as? HTTPURLResponse else {
+              print("Invalid response")
+              isLoading = false
+              return ""
+          }
+
+          if res.statusCode == 200 {
+              if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                  print("json data from login: \(json)")
+
+                  let token = json["token"] as! String
+
+                  print("Token: \(token)")
+
+                  isLoading = false
+                  return token
+              }
+          } else {
+              print("HTTP Status Code: \(res.statusCode)")
+
+              if let responseString = String(data: data, encoding: .utf8) {
+                  print("Response Data: \(responseString)")
+                  // Handle the error using the responseString
+              } else {
+                  print("Failed to convert response data to string.")
+                  // Handle the error appropriately
+              }
+              // Handle the error appropriately
+          }
+      } catch {
+          print("Error: \(error)")
+      }
+
+      isLoading = false
+      return ""
+    }
+    
+    func createSession(name: String, description: String, mode: GpsSessionType) async -> Bool {
+        isLoading = true
+        
+        if name.isEmpty || description.isEmpty {
+            isLoading = false
+            return false
+        }
+        
+        let urlString = "\(baseURL)\(gpsSessionsEndpoint)"
+        let minSpeed = mode == .walking ? 360.0 : 360.0
+        let maxSpeed = mode == .walking ? 720.0 : 600.0
+        
+        let data: [String: Any] = [
+            "name": name,
+            "description": description,
+            "gpsSessionTypeId": mode == .walking ? "00000000-0000-0000-0000-000000000003" : "00000000-0000-0000-0000-000000000001",
+            "paceMin": minSpeed,
+            "paceMax": maxSpeed,
+        ]
+        
+        guard let url = URL(string: urlString) else {
+            print("Unable to create URL from string: \(urlString)")
+            isLoading = false
+            return false
+        }
+        
+        guard let encoded = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted) else {
+            print("Failed to encode data: \(data)")
+            isLoading = false
+            return false
+        }
+        
+        guard let token = Manager.shared.currentUser?.jwtToken else {
+            print("Failed to retrieve token: \(Manager.shared.currentUser?.jwtToken)")
+            isLoading = false
+            return false
+        }
+        
+        var req = URLRequest(url: url)
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        req.httpMethod = "POST"
+        
+        do {
+            let (data, response) = try await URLSession.shared.upload(for: req, from: encoded)
+            
+            guard let res = response as? HTTPURLResponse else {
+                print("Invalid response")
+                isLoading = false
+                return false
+            }
+            
+            if res.statusCode == 201 {
+                print("Session created successfully")
+                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let sessionId = json["id"] as? String {
+                    
+                  
+                    UserDefaults.standard.set(sessionId, forKey: "savedSessionId")
+                    savedSessionId = sessionId
+                    Manager.shared.sessionId = savedSessionId
+                    print("\(sessionId)")
+                    isLoading = false
+                    return true
+                } else {
+                    print("Error extracting session data from JSON")
+                }
+            } else {
+                print("HTTP Status Code: \(res.statusCode)")
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response Data: \(responseString)")
+                }
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        isLoading = false
+        return false
+    }
+    func updateLocation(
+        latitude: CLLocationDegrees,
+        longitude: CLLocationDegrees,
+        locationType: LocationType
+    ) async {
+        if savedSessionId == nil { return }
+        
+        let urlString = "\(baseURL)\(gpsLocations)"
+        let locTypeId = locationType == .location ? "00000000-0000-0000-0000-000000000001" : locationType == .checkPoint ? "00000000-0000-0000-0000-000000000002" : "00000000-0000-0000-0000-000000000003"
+        let data = [
+            "gpsSessionId": savedSessionId!,
+            "gpsLocationTypeId": locTypeId,
+            "latitude": latitude,
+            "longitude": longitude,
+        ] as [String: Any]
+        
+        guard let url = URL(string: urlString) else {
+            print("unable to make string: \(urlString) to URL object")
+            isLoading = false
             return
         }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
+        guard let encoded = try? JSONSerialization.data(withJSONObject: data, options: JSONSerialization.WritingOptions.prettyPrinted) else {
+            print("Failed to encode data: \(data)")
+            isLoading = false
+            return
+        }
+        
+        guard let token = Manager.shared.currentUser?.jwtToken else {
+            print("Failed to receive token: \(Manager.shared.currentUser)")
+            isLoading = false
+            return
+        }
+        
+        var req = URLRequest(url: url)
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        req.httpMethod = "POST"
+        
+        do {
+            let (data, response) = try await URLSession.shared.upload(for: req, from: encoded)
+            
+            guard let res = response as? HTTPURLResponse else {
+                print("Invalid response")
+                isLoading = false
                 return
             }
             
-            guard let data = data else {
-                completion(.failure(NSError(domain: "Data not received", code: 0, userInfo: nil)))
-                return
-            }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                if let token = json?["token"] as? String {
-                    completion(.success(token))
+            if res.statusCode == 201 {
+                print("location updated successfully")
+                
+                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    print("json from location: \(json)")
+                    
+                    return
                 } else {
-                    // Adjust error handling based on your API response structure
-                    completion(.failure(NSError(domain: "Invalid response", code: 0, userInfo: nil)))
+                    print("Error inserting session to db")
+                    return
                 }
-            } catch {
-                completion(.failure(error))
+            } else {
+                print("HTTP Status Code: \(res.statusCode)")
+                
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response Data: \(responseString)")
+                    // Handle the error using the responseString
+                } else {
+                    print("Failed to convert response data to string.")
+                    // Handle the error appropriately
+                }
+                // Handle the error appropriately
             }
+        } catch {
+            print("Error: \(error)")
         }
         
-        task.resume()
-    }
-    
-    func startNewSession(session: Session, completion: @escaping (Result<Session, Error>) -> Void) {
-        let startSessionURL = URL(string: "\(baseURL)/GpsSessions")!
-        let requestBody: [String: Any] = [
-            "name": session.name,
-            "description": session.description,
-            "recordedAt": session.recordedAt,
-            "minSpeed": session.minSpeed,
-            "maxSpeed": session.maxSpeed
-        ]
-        
-        performRequest(url: startSessionURL, method: "POST", body: requestBody) { (result: Result<String, Error>) in
-            switch result {
-            case .success(let responseString):
-                // Assuming your API response contains a string representation of the session or session ID.
-                // You may need to parse the response accordingly.
-                if let responseData = responseString.data(using: .utf8),
-                   let decodedSession = try? JSONDecoder().decode(Session.self, from: responseData) {
-                    completion(.success(decodedSession))
-                } else {
-                    completion(.failure(NSError(domain: "Invalid response", code: 0, userInfo: nil)))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        return
     }
 
-    // Locations
-    func getLocationTypes(completion: @escaping (Result<[Location], Error>) -> Void) {
-        // Implement get location types request
-    }
-
-    func postLocationUpdate(location: Location, completion: @escaping (Result<Void, Error>) -> Void) {
-        // Implement post location update request
-    }
 }
-
-
-
-

@@ -6,37 +6,28 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Session: Decodable {
-    var sessionId: UUID?
+@Model
+class Session {
+    @Attribute(.unique) var id: String
     var name: String
-    var description: String
+    var desc: String
     var recordedAt: Date
-    var minSpeed: Double
-    var maxSpeed: Double
+    var duration: String
+    var speed: Double
+    var distance: Double
+    var locations = [UserLocation]()
 
-    enum CodingKeys: String, CodingKey {
-        case sessionId
-        case name
-        case description
-        case recordedAt
-        case minSpeed
-        case maxSpeed
+    init(id: String, name: String, description: String, duration: String, speed: Double, distance: Double) {
+        self.id = id
+        self.name = name
+        self.desc = description
+        self.recordedAt = Date()
+        self.duration = duration
+        self.speed = speed
+        self.distance = distance
     }
 }
-struct LocationType {
-    var id: UUID
-    var name: String
-    var description: String
-}
 
-struct LocationUpdate {
-    var recordedAt: Date
-    var latitude: Double
-    var longitude: Double
-    var accuracy: Double
-    var altitude: Double
-    var verticalAccuracy: Double
-    var gpsSessionId: UUID
-    var gpsLocationTypeId: UUID
-}
+

@@ -16,10 +16,8 @@ class AuthorizationManager {
     @Published var password2Error = false
     @Published var registerSuccessful = false
     static let shared = AuthorizationManager()
-    
-    
-    
-    
+    var loginSuccessful = false
+
     static func requestLocationAuthorization() {
         LocationManager.shared.requestLocation()
     }
@@ -27,7 +25,7 @@ class AuthorizationManager {
         manager.requestWhenInUseAuthorization()
     }
     static func requestNotificationAuthorization() {
-        // Implement notification authorization logic
+        NotificationManager.shared.requestNotificationsPermission()
     }
     func isEmailValid(_ email: String) -> Bool {
         return email.contains("@")
@@ -35,58 +33,72 @@ class AuthorizationManager {
     func isCredentialValid(_ credential: String) -> Bool {
         return credential.count >= 3
     }
-    
+    func isPasswordValid(_ credential: String) -> Bool {
+        // Check if the length is at least 8 characters
+        guard credential.count >= 8 else {
+            return false
+        }
 
+        // Check if it contains at least 1 uppercase letter
+        let uppercaseLetterRegex = ".*[A-Z]+.*"
+        guard NSPredicate(format: "SELF MATCHES %@", uppercaseLetterRegex).evaluate(with: credential) else {
+            return false
+        }
+
+        // Check if it contains at least 1 symbol
+        let symbolRegex = ".*[^A-Za-z0-9]+.*"
+        guard NSPredicate(format: "SELF MATCHES %@", symbolRegex).evaluate(with: credential) else {
+            return false
+        }
+
+        // If all conditions are met, the password is valid
+        return true
+    }
+    
+    
     func validateAndCreateUser(
-            firstName: String,
-            lastName: String,
-            email: String,
-            password: String,
-            password2: String,
-            completion: @escaping (Bool) -> Void
-        ) {
-            firstNameError = !isCredentialValid(firstName)
-            lastNameError = !isCredentialValid(lastName)
-            emailError = !isEmailValid(email)
-            passwordError = !isCredentialValid(password)
-            password2Error = !isCredentialValid(password2) || (password != password2)
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        password2: String
+    ) async {
+        firstNameError = !isCredentialValid(firstName)
+        lastNameError = !isCredentialValid(lastName)
+        emailError = !isEmailValid(email)
+        passwordError = !isPasswordValid(password)
+        password2Error = !isPasswordValid(password2) || (password != password2)
+        
+        let isValid = !firstNameError && !lastNameError && !emailError && !passwordError && !password2Error
+        if isValid {await Manager.shared.register(
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password)
             
-            let isValid = !firstNameError && !lastNameError && !emailError && !passwordError && !password2Error
-            if isValid {
-                let user = User(userId: UUID(), firstName: firstName, lastName: lastName, email: email, password: password)
-                
-                NetworkManager.shared.registerUser(user: user) { result in
-                    switch result {
-                    case .success:
-                        // Handle success, e.g., set registerSuccessful flag
-                        self.registerSuccessful = true
-                        completion(true)
-                    case .failure(let error):
-                        // Handle failure, e.g., display an error message
-                        print("Error registering user: \(error)")
-                        completion(false)
-                    }
-                }
-            } else {
-                completion(false)
-            }
+        }
+        else {
         }
         
-        func createUser(username: String, password: String) {
-            // Assuming you have some local storage mechanism to store the user locally
-            // You can use UserDefaults or CoreData, for example
-            // Store the user locally
-            // Store the user locally using your preferred storage mechanism
-            
-            // After storing the user locally, proceed to register the user with the network manager
-            
+    }
+    func validateAndLogin(
+        email: String,
+        password: String
+    ) async{
+        // Validation logic for email and password
+        emailError = !isEmailValid(email)
+        passwordError = !isCredentialValid(password)
+        let isValid = !emailError && !passwordError
+        
+        if isValid {
+               Manager.shared.login(email: email, password: password)
+           }
+        else {
+            print("credentials are not valid")
         }
-        func reset() {
-            
-        }
-        func pause()
-        {
-            
-        }
+    }
+        
+
+        
     
 }
