@@ -126,7 +126,6 @@
 		430E211D2B0CFBDA0044E0EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA510B162B07C8E5005A3FC8 /* LoginView.swift */,
 				43E763952B16BDE5001DFAE3 /* ControlsView.swift */,
 				43E763962B16BDE5001DFAE3 /* PictureTableView.swift */,
 				43E763982B16BDE5001DFAE3 /* SettingsView.swift */,
@@ -136,6 +135,7 @@
 				FA510B1A2B07C8E5005A3FC8 /* LoginOrRegisterView.swift */,
 				FA510B142B07C8E5005A3FC8 /* MapOptionsView.swift */,
 				FA510B1B2B07C8E5005A3FC8 /* MapStatisticsView.swift */,
+				FA510B162B07C8E5005A3FC8 /* LoginView.swift */,
 				FA510B1C2B07C8E5005A3FC8 /* RegisterView.swift */,
 				43C933C82B06BBCF00D3B149 /* LocationRequestView.swift */,
 				430E211F2B0CFCFA0044E0EF /* CompassView.swift */,

@@ -35,17 +35,15 @@ class NetworkManager {
                 }
             }
        }
-    
-    func loginUser(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        let loginURL = URL(string: "\(baseURL)/login")!
+    func loginUser(credentials: LoginUser, completion: @escaping (Result<String, Error>) -> Void) {            let loginURL = URL(string: "\(baseURL)/login")!
         let requestBody: [String: Any] = [
-            "email": user.email,
-            "password": user.password
-        ]
-        
-        performRequest(url: loginURL, method: "POST", body: requestBody, completion: completion)
+                    "email": credentials.email,
+                    "password": credentials.password
+                ]
+
+            performRequest(url: loginURL, method: "POST", body: requestBody, completion: completion)
+        }
     
-    }
     
     private func performRequest(url: URL, method: String, body: [String: Any], completion: @escaping (Result<String, Error>) -> Void) {
         var request = URLRequest(url: url)
