@@ -297,7 +297,7 @@ class NetworkManager {
                 print("location updated successfully")
                 
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                    print("json from location: \(json)")
+                    print("json from location:")
                     
                     return
                 } else {
@@ -308,7 +308,7 @@ class NetworkManager {
                 print("HTTP Status Code: \(res.statusCode)")
                 
                 if let responseString = String(data: data, encoding: .utf8) {
-                    print("Response Data: \(responseString)")
+                    print("Response Data: location updated")
                     // Handle the error using the responseString
                 } else {
                     print("Failed to convert response data to string.")

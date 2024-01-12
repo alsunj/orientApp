@@ -18,7 +18,7 @@ class LocationManager: NSObject, ObservableObject {
     @Published var waypoint: CLLocationCoordinate2D?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var waypointPresented: Bool = false
-    @Published var lastMoveTime: Date?
+  
     
     
     enum GpsSessionType { case walking, running }
@@ -44,8 +44,7 @@ class LocationManager: NSObject, ObservableObject {
     @Published var averageSpeedFromWp: Double = 0.0
     @Published var sessionDurationBeforeCp = 0.0
     @Published var sessionDurationBeforeWp = 0.0
-    private var lastPauseTime: Date?
-    private var distanceSinceLastPause: Double = 0.0
+
     
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
@@ -116,7 +115,7 @@ extension LocationManager: CLLocationManagerDelegate {
         if Manager.shared.trackingEnabled {
             if let previousLocation = userLocations?.last {
                 let distance = location.distance(from: CLLocation(latitude: previousLocation.latitude, longitude: previousLocation.longitude))
-                if distance > 1 && distance <= 5.0 {
+                if distance > 1 && distance <= 10.0 {
                     Task {
                         await Manager.shared.updateLocation(
                             latitude: location.coordinate.latitude,
@@ -125,13 +124,11 @@ extension LocationManager: CLLocationManagerDelegate {
                     }
                     userLocations!.append(location.coordinate)
                     calculateDistances()
-                    lastMoveTime = Date()
                     
                 }
                 
             } else {
                 userLocations = [location.coordinate]
-                lastMoveTime = Date()
             }
             
         }
@@ -169,7 +166,7 @@ extension LocationManager: CLLocationManagerDelegate {
                 await Manager.shared.updateLocation(
                     latitude: userLocation!.coordinate.latitude,
                     longitude: userLocation!.coordinate.longitude,
-                    locationType: .checkPoint)
+                    locationType: .wayPoint)
             }
             Task { @MainActor in
                 distanceFromWp = 0.0
@@ -184,11 +181,10 @@ extension LocationManager: CLLocationManagerDelegate {
         let secondToLastLocation = CLLocation(latitude: userLocations![userLocations!.count - 2].latitude, longitude: userLocations![userLocations!.count - 2].longitude)
         
         
-        if let lastMoveTime = lastMoveTime, abs(lastMoveTime.timeIntervalSinceNow) < elapsedTime {
             calculateDistanceCovered(secondToLastLocation: secondToLastLocation, lastLocation: lastLocation)
             calculateDistanceFromCp(secondToLastLocation: secondToLastLocation, lastLocation: lastLocation)
             calculateDistanceFromWp(secondToLastLocation: secondToLastLocation, lastLocation: lastLocation)
-        }
+        
     }
     
     private func calculateDistanceCovered(secondToLastLocation: CLLocation, lastLocation: CLLocation) {
