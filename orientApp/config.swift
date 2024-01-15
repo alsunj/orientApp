@@ -12,9 +12,9 @@ struct Config {
     static let shared = Config()
     
     let backendUrl = "https://sportmap.akaver.com"
-    let smtpHostname = "the host where your email is located on, f.e smtp.gmail.com"
-    let smtpEmail = "email where we send the gpx data from"
-    let smtpPassword = "for your email"
+    let smtpHostname = "smtp.gmail.com"
+    let smtpEmail = "alex.sunjajevtest@gmail.com"
+    let smtpPassword = "czweiseisxhoptvt"
     let baseURL = "https://sportmap.akaver.com"
     let registerEndpoint = "/api/v1.0/account/register"
     let loginEndpoint = "/api/v1.0/account/login"
