@@ -17,5 +17,7 @@ public struct SessionAttributes: ActivityAttributes {
      let sessionDistance: Double
      let sessionDuration: String
      let sessionSpeed: Double
+     var isSessionActive: Bool = true
+
  }
 }

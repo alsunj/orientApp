@@ -109,7 +109,7 @@ class Manager : NSObject, ObservableObject {
                     currentUser!.jwtToken = token
                     
                     print("Token 14   ", token)
-                    print("-----------", currentUser?.sessionIds, "--------------")
+                    print("-----------", currentUser?.email, "--------------")
                     // Insert the updated User instance into the model context
                     modelContext.insert(fetchedUserModel)
                     
@@ -197,25 +197,13 @@ class Manager : NSObject, ObservableObject {
                 fetchDescriptor.predicate = #Predicate<Session> { session in
                     session.id == sessionId
                 }
-                //               if let fetchedSession = try? modelContext.fetch(fetchDescriptor).first {
-                //                  print("Locations fetched from database: \(fetchedSession.locations)")
-                //               }
+
                 
                 if let fetchedSession = try? modelContext.fetch(fetchDescriptor).first {
                     fetchedSession.duration = LocationManager.shared.sessionDuration
                     fetchedSession.speed = LocationManager.shared.averageSpeed
                     fetchedSession.distance = LocationManager.shared.distanceCovered
-                    
-                    //                   var fetchDescriptor = FetchDescriptor<UserLocation>()
-                    //                   fetchDescriptor.predicate = #Predicate<UserLocation> { userLocation in
-                    //                                   userLocation.session?.id == sessionId
-                    //                                 }
-                    //                   if let locations = try? modelContext.fetch(fetchDescriptor) {
-                    //                       print("-------------\(locations)---------------------")
-                    //                       let sessionLocations = locations.filter { $0.session?.id == sessionId }
-                    //                       print("Locations added to session: \(sessionLocations)")
-                    //                       fetchedSession.locations = sessionLocations
-                    //                   }
+         
                     modelContext.insert(fetchedSession)
                     try? modelContext.save()
                     sessionStarted = false
@@ -224,70 +212,60 @@ class Manager : NSObject, ObservableObject {
                     print("No session found with ID: \(sessionId)")
                 }
                 
-                
             }
+            LocationManager.shared.reset()
+            SessionManager.shared.stopActivity()
         }
+        
     }
     
     
     @MainActor
     func updateLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, locationType: LocationType) async {
         await NetworkManager.shared.updateLocation(latitude: latitude, longitude: longitude, locationType: locationType)
-        let locationTypeIdString = locationTypeToId(locationType)
-        guard let locationTypeEnum = UserLocation.LocationType(rawValue: locationTypeIdString)
-        else {
-            return
-        }
+
         guard let sessionId = sessionId else {
-            print("sessionId is nil")
-            return
-        }
-        
+                    print("sessionId is nil")
+                    return
+                }
+        let mappedLocationType = locationTypeToUserLocationType(locationType)
+        print("-------,\(mappedLocationType)")
         let locationUpdate = UserLocation(
             createdAt: Date(),
-            locationType: locationTypeEnum,
+            locationType: mappedLocationType,
             latitude: latitude,
             longitude: longitude,
             session: savedSession
         )
-        //            var fetchDescriptor = FetchDescriptor<Session>()
-        //            fetchDescriptor.predicate = #Predicate<Session> { session in
-        //                session.id == sessionId
-        //            }
-        //            if let fetchedSession = try? modelContext.fetch(fetchDescriptor).first {
-        //                   // Add the location to the session's locations array
-        //                   fetchedSession.locations.append(locationUpdate)
-        //                   try? modelContext.save()
-        //               }
+        print("4")
+        let updatedSession = savedSession
+                    var fetchDescriptor = FetchDescriptor<Session>()
+                    fetchDescriptor.predicate = #Predicate<Session> { session in
+                        session.id == sessionId
+                    }
+                    if let fetchedSession = try? modelContext.fetch(fetchDescriptor).first {
+                           fetchedSession.locations.append(locationUpdate)
+                        print("----------",fetchedSession.locations,"-----------")
+
+                           try? modelContext.save()
+                       }
+        
         modelContext.insert(locationUpdate)
         try? modelContext.save()
     }
     
-    func locationTypeToId(_ locationType: LocationType) -> String {
-        switch locationType {
-        case .location:
-            return "00000000-0000-0000-0000-000000000001"
-        case .checkPoint:
-            return "00000000-0000-0000-0000-000000000002"
-        case .wayPoint:
-            return "00000000-0000-0000-0000-000000000003"
-        }
+    func locationTypeToUserLocationType(_ networkManagerLocationType: NetworkManager.LocationType) -> UserLocation.LocationType {
+       switch networkManagerLocationType {
+       case .location:
+           return .location
+       case .checkPoint:
+           return .checkPoint
+       case .wayPoint:
+           return .wayPoint
+       }
     }
     
-    //    func fetchSession(sessionId: String) -> Session? {
-    //       var fetchDescriptor = FetchDescriptor<Session>()
-    //       fetchDescriptor.predicate = #Predicate<Session> { session in
-    //           session.id == sessionId
-    //       }
-    //
-    //       if let fetchedSession = try? modelContext.fetch(fetchDescriptor).first {
-    //           return fetchedSession
-    //       } else {
-    //           print("Failed to fetch session with ID: \(sessionId)")
-    //           return nil
-    //       }
-    //    }
-    // textfield views mis otsib kindla session.namei-ga sessiooni
+
     @MainActor
     func fetchSession(sessionId: String) -> Session? {
         var fetchDescriptor = FetchDescriptor<Session>()

@@ -90,64 +90,7 @@ struct ButtonsView: View {
 }
 
 
-struct SessionCreationView: View {
-    @Binding var isPresented: Bool
-    @Binding var isSessionCreationSheetPresented: Bool
-    @EnvironmentObject var smanager: Manager
-    @State private var sessionName: String = ""
-    @State private var description: String = ""
-    @State private var isWalkingSelected: Bool = true
-    
-    var body: some View {
-        VStack {
-            Text("Session Details")
-                .font(.headline)
-                .padding()
-            TextField("Session name",text: $sessionName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal, 20)
-            
-            TextField("Description", text: $description)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal, 20)
-            
-            HStack {
-                Image(systemName: isWalkingSelected ? "figure.run" : "figure.walk")
-                Toggle(isOn: $isWalkingSelected) {
-                    Text(isWalkingSelected ? "Running" : "Walking")
-                }
-                .labelsHidden()
-            }
-            .padding()
-            .background(Color(UIColor.systemBackground))
-            .cornerRadius(8)
-            Button(action: {
-                Task {
-                    await  Manager.shared.createSession(
-                        name: sessionName,
-                        description: description,
-                        mode: isWalkingSelected ? .walking : .running
-                    )
-                    isSessionCreationSheetPresented = smanager.sessionStarted
-                    print("session4 \( smanager.sessionStarted)")
-                    
-                    
-                    
-                }
-            }, label: {
-                if smanager.sessionLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                } else {
-                    Text("Create")
-                }
-            })
-            .padding()
-            
-        }
-        
-    }
-}
+
 
 
 //    #Preview{

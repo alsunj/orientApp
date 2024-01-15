@@ -17,9 +17,14 @@ struct SessionWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: SessionAttributes.self) { context in
             VStack {
-                SessionStatsWidget(context: context)
-                SessionControlsWidget()
-                    .padding(.top, 10)
+                if context.state.isSessionActive {
+                    SessionStatsWidget(context: context)
+                    SessionControlsWidget()
+                        .padding(.top, 10)
+                } else {
+                    Text("Well Done, you can view your sessions from the menu!")
+                    // odav lahendus vana sessiooni kustutamisele, kahjuks mingit funktsiooni ei ole olemas et widgetit kustutada.
+                }
             }
             .padding(.top, 10)
             .padding(.bottom, 10)
