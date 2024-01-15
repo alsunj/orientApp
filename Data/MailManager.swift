@@ -15,40 +15,48 @@ struct MailSender {
     private let smtp: SMTP
     private let fromEmail: Mail.User
     
+    
+    
     init() {
         self.smtp = SMTP(
             hostname: config.smtpHostname,
             email: config.smtpEmail,
             password: config.smtpPassword
+
         )
         
-        fromEmail = Mail.User(email: config.smtpEmail)
-    }
+        fromEmail = Mail.User(email: Manager.shared.currentUser!.email)
+    } 
     
     
     func sendMail(
-        toEmail to: String,
-        subject: String,
-        body: String,
-        completion: @escaping (Result<Void, Error>) -> Void) {
-            let toEmail = Mail.User(email: to)
-            
-            let mail = Mail(
-                from: fromEmail,
-                to: [toEmail],
-                subject: subject,
-                text: body
-            )
-            
-            Task { @MainActor in
-                smtp.send(mail) { error in
-                    if let error = error {
-                        completion(.failure(error))
-                    }
+     toEmail to: String,
+     subject: String,
+     attachment: Attachment?,
+     completion: @escaping (Result<Void, Error>) -> Void) {
+         let toEmail = Mail.User(email: to)
+
+         let mail = Mail(
+             from: fromEmail,
+             to: [toEmail],
+             subject: subject,
+             attachments: attachment.map { [$0] } ?? []
+         )
+         
+         Task { @MainActor in
+            smtp.send(mail) { error in
+                if let error = error {
+                    print("Email sending failed with error: \(error)")
+                    completion(.failure(error))
+                } else {
+                    print("Email sent successfully")
+                    completion(.success(()))
                 }
-                completion(.success(()))
             }
-        }
+         }
+    }
+        
+    
     func createGPXStringFromSession(_ session: Session) -> String {
         let gpx = GPXRoot(creator: "orientApp")
         

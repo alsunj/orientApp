@@ -12,12 +12,12 @@ import SwiftData
 struct orientAppApp: App {
     @StateObject private var locationManager = LocationManager.shared
     @StateObject private var smanager = Manager.shared
-    @StateObject private var healthManager = HealthManager.shared
+   // @StateObject private var healthManager = HealthManager.shared
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(healthManager)
+ //               .environmentObject(healthManager)
                 .environmentObject(smanager)
                 .environmentObject(locationManager)
         }

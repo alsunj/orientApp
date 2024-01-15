@@ -30,7 +30,7 @@ class SessionManager: ObservableObject {
                 content: content,
                 pushType: nil
             )
-            
+        
         } catch (let e) {
             print("SessionManager startActivity() failed! Error:")
             print(e.localizedDescription)
@@ -61,11 +61,24 @@ class SessionManager: ObservableObject {
         }
     }
     func stopActivity() {
-        if let activity = activity {
-            Task {
-                await activity.end(nil, dismissalPolicy: .default)
-            }
-        }
+           if let activity = activity {
+               let contentState = SessionAttributes.ContentState(
+                   sessionDistance: 0.0,
+                   sessionDuration: "00:00:00",
+                   sessionSpeed: 0.0,
+                   isSessionActive: false
+               )
+               
+               Task {
+                   await activity.update(
+                      ActivityContent<SessionAttributes.ContentState>(
+                          state: contentState,
+                          staleDate: nil
+                      )
+                   )
+                   self.activity = activity
+               }
+           }
         
         
     }
@@ -87,7 +100,6 @@ class SessionManager: ObservableObject {
         if !pauseSession{
             Manager.shared.pauseSession()
         }
-        
     }
     
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 import MessageUI
 import SwiftSMTP
+import CoreGPX
 
 struct SessionView: View {
     private let mail = MailSender.shared
@@ -66,18 +67,30 @@ struct SessionView: View {
                 Button("OK") {
                     Task { @MainActor in
                         let gpxString = MailSender.shared.createGPXStringFromSession(session)
-                        mail.sendMail(
-                            toEmail: email,
-                            subject: "Your session - \(session.name) gpx data",
-                            body: gpxString )
-                        { res in
-                            switch res {
-                            case .success:
-                                mailResult = true
-                            case .failure:
-                                mailResult = false
-                            }
-                            showMailResult = true
+                        if let gpxData = gpxString.data(using: .utf8) {
+                           let gpxAttachment = Attachment(
+                               data: gpxData,
+                               mime: "application/gpx+xml",
+                               name: "session.gpx",
+                               inline: false
+                           )
+
+                           MailSender.shared.sendMail(
+                               toEmail: email,
+                               subject: "Your session - \(session.name) gpx data",
+                               attachment: gpxAttachment,
+                               completion: { res in
+                                   switch res {
+                                   case .success:
+                                       mailResult = true
+                                   case .failure:
+                                       mailResult = false
+                                   }
+                                   showMailResult = true
+                               }
+                           )
+                        } else {
+                           print("cant get gpx data")
                         }
                         
                     }
